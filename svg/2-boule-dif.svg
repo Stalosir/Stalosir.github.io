@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Calque_2" data-name="Calque 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 119.81 88.08">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#Nouvelle_nuance_de_dégradé_1);
+        filter: url(#drop-shadow-2);
+      }
+
+      .cls-1, .cls-2 {
+        stroke-width: 0px;
+      }
+
+      .cls-2 {
+        fill: url(#Dégradé_sans_nom_9);
+        filter: url(#drop-shadow-1);
+      }
+    </style>
+    <linearGradient id="Dégradé_sans_nom_9" data-name="Dégradé sans nom 9" x1="82.89" y1="39.72" x2="116.89" y2="81.72" gradientTransform="translate(69.93 -52.18) rotate(45)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#26888b"/>
+      <stop offset="1" stop-color="#346b86"/>
+    </linearGradient>
+    <filter id="drop-shadow-1" filterUnits="userSpaceOnUse">
+      <feOffset dx="1.81" dy="1.81"/>
+      <feGaussianBlur result="blur" stdDeviation="3.87"/>
+      <feFlood flood-color="#010101" flood-opacity=".4"/>
+      <feComposite in2="blur" operator="in"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <linearGradient id="Nouvelle_nuance_de_dégradé_1" data-name="Nouvelle nuance de dégradé 1" x1="697" y1="229.76" x2="717.97" y2="256.83" gradientTransform="translate(-668.82 -204.97)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#26888b"/>
+      <stop offset="1" stop-color="#346b86"/>
+    </linearGradient>
+    <filter id="drop-shadow-2" filterUnits="userSpaceOnUse">
+      <feOffset dx="3.98" dy="3.98"/>
+      <feGaussianBlur result="blur-2" stdDeviation="8.53"/>
+      <feFlood flood-color="#010101" flood-opacity=".4"/>
+      <feComposite in2="blur-2" operator="in"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Calque_1-2" data-name="Calque 1">
+    <circle class="cls-2" cx="97.95" cy="58.32" r="8.31" transform="translate(-12.55 86.34) rotate(-45)"/>
+    <circle class="cls-1" cx="39.98" cy="40.01" r="18.31"/>
+  </g>
+</svg>

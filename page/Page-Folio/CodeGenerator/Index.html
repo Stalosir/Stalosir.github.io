@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Générator - Mariotte théo</title>
+
+    <!--Icone-->
+    <link rel="icon" type="image/png" href="../../../Images/FavIcone/incone.png">
+    
+    <!-- link mon css au code -->
+    <link rel="stylesheet" href="css/style.css"> 
+
+    <!--Link vers mes script JS pour les pages-->
+    <script src="script/scriptPage1.js"></script> <!-- effet de forme-->
+    <script src="script/scriptPage2.js"></script> <!-- effet de texte-->
+    <script src="script/scriptReturnCv.js"></script> <!-- Retourner au portfolio-->
+
+    <!-- site pour les icones-->
+    <script src="https://kit.fontawesome.com/a72ed54e0c.js" crossorigin="anonymous"></script>
+
+</head>
+<body>
+
+    <!--Les point d'encrage des boutton-->
+    <p0 id="0"></p0>
+    <p10 id="1"></p10>
+    <p20 id="2"></p20>
+
+    <!--1ere page-->
+    <div class="page1">
+        <h1>Testez les balises</h1>
+        <div class="boutons">
+            <a href="#1" class="bouton">Effet de forme</a>
+            <a href="#2" id="pasFini"class="bouton">Effet de texte</a>
+        </div>
+    </div>
+
+    <!--2eme page-->
+    <div class="page2 bloquer">
+        <h2 class="titrePage2">Effet de forme</h2>
+        <div class="CaseVisuelPage2">
+            <div id="FormeVisuels"></div>
+        </div>
+        <div class="menu1">
+            <p class="TextMenu bloquer">Information</p>
+            <div class="sous-menu1">
+                <div class="contenu-sous-menu">
+                    <p>Indiquer la nature <br>de la forme :</p>
+                    <input type="checkbox" id="checkboxId" name="checkboxId" checked>
+                    <label for="checkboxId">ID</label>
+                    &emsp;
+                    <input type="checkbox" id="checkboxClass" name="checkboxClass">
+                    <label for="checkboxClass">Class</label>
+
+                    <p>Indiquer le nom :</p>
+                    <input type="text" class="custom-textBox" id="textboxcusto">
+
+                    <p class="custom-textBoxBis">Cochée si l'élément <br>possède un <br>effet de <b>:hover</b></p>
+                    <input type="checkbox" class="checkbox-move1" id="checkboxHover">
+
+                </div>
+            </div>
+        </div>
+        <div class="menu2">
+            <p class="TextMenu bloquer">Colorisation</p>
+            <div class="sous-menu2">
+                <div class="contenu-sous-menu">
+                    <p>Couleur <br>standard</p>
+                    <input type="color" class="color-move1" id="standard-color" value="#BA0000">
+
+                    <p id="disabledColor">Couleur <br>hover</p>
+                    <input type="color" class="color-move1" id="hover-color" disabled>
+                </div>
+            </div>
+        </div>
+        <div class="menu3">
+            <p class="TextMenu bloquer">Effet de Bordure</p>
+            <div class="sous-menu3">
+                <div class="HGau" id="HGau">
+                    <input type="text" id="hautGauche" maxlength="2" value="0"><p id="hautGaucheBis">px</p>
+                    <div class="hautGauche">
+                        <i class="fa-solid fa-chevron-up" style="color: #ffffff;"></i>  
+                    </div>
+                </div>
+                <div class="HDro" id="HDro">
+                    <input type="text" id="hautDroit" maxlength="2" value="0"><p id="hautDroitBis">px</p>
+                    <div class="hautDroit">
+                        <i class="fa-solid fa-chevron-up" style="color: #ffffff;"></i>
+                    </div>
+                </div>
+                <div class="BGau" id="BGau">
+                    <input type="text" id="basGauche" maxlength="2" value="0"><p id="basGaucheBis">px</p>
+                    <div class="basGauche">
+                        <i class="fa-solid fa-chevron-up" style="color: #ffffff;"></i>
+                    </div>
+                </div>
+                <div class="BDro" id="BDro">
+                    <input type="text" id="basDroit" maxlength="2" value="0"><p id="basDroitBis">px</p>
+                    <div class="basDroit">
+                        <i class="fa-solid fa-chevron-up" style="color: #ffffff;"></i>
+                    </div>
+                </div>
+                <div class="lierLesText lierLesText_page3" id="lierLesText">
+                    <p class="TextLier"><i class="fa-solid fa-link" style="color: #ffffff;"></i> Lier les valeurs</p>
+                </div>
+                <div class="AllRange">
+                    <p class="TextRange" id="TextRange">5</p>
+                    <div class="VerticalRange">
+                        <input type="range" min="0" max="40" value="5" class="Range" id="myRange" disabled>
+                    </div>
+                </div>
+                <div class="boder">
+                    <input type="checkbox" id="questionBoder" >
+                    <div class="questionBoder"><p>Cochée si l'élément possède <br>une bordure</p></div>
+                    <div class="colorBorder"><p id="gray2">Définir la couleur<br>de la bordure</p></div>
+                    <input type="color" id="ColorBordure" disabled>
+                    <div class="HovercolorBorder"><p id="gray3">Définir la couleur du <br><b>:Hover</b> de la bordure</p></div>
+                    <input type="color" id="HoverColorBordure" disabled title = 'Activé le Hover et la bordure pour avoir accés a ce paramétre'>
+                </div>
+            </div>
+        </div>
+        <div class="generateur1">
+            
+            <div class="headerGenerateur1"></div>
+            <div class="coloneGenerateur bloquer">
+                <p class="TextColoneGenerateur">1</p>
+                <p class="TextColoneGenerateur">2</p>
+                <p class="TextColoneGenerateur">3</p>
+                <p class="TextColoneGenerateur">4</p>
+                <p class="TextColoneGenerateur">5</p>
+                <p class="TextColoneGenerateur">6</p>
+                <p class="TextColoneGenerateur">7</p>
+                <p class="TextColoneGenerateur">8</p>
+                <p class="TextColoneGenerateur">9</p>
+                <p class="TextColoneGenerateur">10</p>
+                <p class="TextColoneGenerateur">11</p>
+                <p class="TextColoneGenerateur">12</p>
+                <p class="TextColoneGenerateur">13</p>
+                <p class="TextColoneGenerateur">14</p>
+                <p class="TextColoneGenerateur">15</p>
+                <p class="TextColoneGenerateur">16</p>
+            </div>
+            <p class="TextGenerateur1 bloquer">Code Généré</p>
+            <div class="ContenuGenerateur bloquer">
+                <p class="TextColoneGenerateur">• ________________________________________</p>
+                <p class="TextColoneGenerateur">• ________________________________________</p>
+                <p class="TextColoneGenerateur">• ________________________________________</p>
+                <p class="TextColoneGenerateur">• ________________________________________</p>
+                <p class="TextColoneGenerateur">• ________________________________________</p>
+                <p class="TextColoneGenerateur">• ________________________________________</p>
+                <p class="TextColoneGenerateur">• ________________________________________</p>
+                <p class="TextColoneGenerateur">• ________________________________________</p>
+                <p class="TextColoneGenerateur">• ________________________________________</p>
+                <p class="TextColoneGenerateur">• ________________________________________</p>
+                <p class="TextColoneGenerateur">• ________________________________________</p>
+                <p class="TextColoneGenerateur">• ________________________________________</p>
+                <p class="TextColoneGenerateur">• ________________________________________</p>
+                <p class="TextColoneGenerateur">• ________________________________________</p>
+                <p class="TextColoneGenerateur">• ________________________________________</p>
+                <p class="TextColoneGenerateur">• ________________________________________</p>
+            </div>
+            <div class="TextContenuGenerateur">
+                <p class="Ligne" id="Ligne1"><span class="blancYellow">#Name </span><span class="Yellow">{</span></p>
+                <p class="Ligne" id="Ligne2">&emsp;<span class="Bleu">background-color</span>: <span class="orange">#ba0000</span>;</p>
+                <p class="Ligne" id="Ligne3">&emsp;<span class="Bleu">border-radius</span>: <span class="vertClaire">0px</span>;</p>
+                <p class="Ligne" id="Ligne4"></p>
+                <p class="Ligne" id="Ligne5"><span class="Yellow">}</span></p>
+                <p class="Ligne" id="Ligne6"></p>
+                <p class="Ligne" id="Ligne7" hidden>&emsp;<span class="Bleu">background-color</span>: <span class="orange">#000000</span>;</p>
+                <p class="Ligne" id="Ligne8"></p>
+                <p class="Ligne" id="Ligne9"></p>
+                <p class="Ligne" id="Ligne10"></p>
+                <p class="Ligne" id="Ligne11"></p>
+                <p class="Ligne" id="Ligne12"></p>
+                <p class="Ligne" id="Ligne13"></p>
+                <p class="Ligne" id="Ligne14"></p>
+                <p class="Ligne" id="Ligne15"></p>
+                <p class="Ligne" id="Ligne16"></p>
+            </div>
+        </div>
+        <div class="CopyButton" id="CopyButton">
+            <p class="TextCopyButton">Copier le text</p>
+            <div class="Confirmation"id="Confirmation">
+                <p class="copierText">Copier!</p>
+                <div class="flecheVert"></div>
+            </div>
+        </div>
+    </div>
+
+    <!--3eme page-->
+    <div class="page3 bloquer">
+        <h2 class="titrePage3">Effet de texte</h2>
+        <div class="CaseVisuelPage2">
+            <div id="textVisuels">
+                <p id="rendu">Texte rendu</p>
+            </div>
+        </div>
+        <div class="menu0">
+            <p class="TextMenu bloquer">Customisation du contenu</p>
+            <div class="sous-menu0">
+                <div class="contenu-sous-menu">
+                    <p>Indiquer le Texte de rendu : <input placeholder="attention, les textes peuvent déborder" type="text" class="rendu-textBox" id="textbox_rendu"></p>
+                </div>
+            </div>
+        </div>
+        <div class="menu1">
+            <p class="TextMenu bloquer">Information</p>
+            <div class="sous-menu1">
+                <div class="contenu-sous-menu">
+                    <p>Indiquer la nature <br>de la forme :</p>
+                    <input type="checkbox" id="checkboxId_page3" name="checkboxId" checked>
+                    <label for="checkboxId">ID</label>
+                    &emsp;
+                    <input type="checkbox" id="checkboxClass_page3" name="checkboxClass">
+                    <label for="checkboxClass">Class</label>
+
+                    <p>Indiquer le nom :</p>
+                    <input type="text" class="custom-textBox" id="textbox_custo">
+
+                    <p class="custom-textBoxBis">Cochée si l'élément <br>possède un <br>effet de <b>:hover</b></p>
+                    <input type="checkbox" class="checkbox-move1" id="checkboxHover_page3">
+
+                </div>
+            </div>
+        </div>
+        <div class="menu2">
+            <p class="TextMenu bloquer">Colorisation</p>
+            <div class="sous-menu2">
+                <div class="contenu-sous-menu">
+                    <p>Couleur <br>standard</p>
+                    <input type="color" class="color-move1" id="standard-color_page3" value="#FFFFFF">
+
+                    <p id="disabledColor_page3">Couleur <br>hover</p>
+                    <input type="color" class="color-move1" id="hover-color_page3" disabled>
+                </div>
+            </div>
+        </div>
+        <div class="menu3">
+            <p class="TextMenu bloquer">Effet de Texte</p>
+            <div class="sous-menu3">
+                <div class="apercus_modif">
+                    <p style="font-weight: bold; transform: translateY(-0.5px);">U</p>
+                    <p style="font-style: oblique; transform: translateY(2px);">U</p>
+                    <p style="text-decoration: underline; transform: translateY(4px);">U</p>
+                    <p style="text-decoration: overline; transform: translateY(6px);">U</p>
+                    <p style="text-decoration: line-through; transform: translateY(8px);">U</p>
+                </div>
+                <div class="bold" id="Div-chexboxBold">
+                    <input type="checkbox" id="chexboxBold">
+                    <label class="up">Mettre un effet de gras</label>
+                </div>
+                <div class="Oblique" id="Div-chexboxOblique">
+                    <input type="checkbox" id="chexboxOblique">
+                    <label class="up">Mettre un effet d'italique</label>
+                </div>
+                <div class="Underline" id="Div-chexboxUnderline">
+                    <input type="checkbox" id="chexboxUnderline">
+                    <label class="up">Mettre un effet de soulignement</label>
+                </div>
+                <div class="Overline" id="Div-chexboxOverline">
+                    <input type="checkbox" id="chexboxOverline">
+                    <label class="up">Mettre un effet de surlignement</label>
+                </div>
+                <div class="line-through" id="Div-chexboxline-through">
+                    <input type="checkbox" id="chexboxline-through">
+                    <label class="up">Barré le texte</label>
+                </div>
+                <hr class="hr_menu3">
+                <div class="AllRange">
+                    <div class="Range_letter-spacing">
+                        <input type="checkbox" class="activation_letter-Range" id="activation_letter-Range">
+
+                        <p class="up" id="label_range_letter">Éspacement des lettres</p>
+                        <input type="range" min="0" max="20" value="5" class="letter-Range" id="letter-Range" disabled>
+                        <p class="Text_letter-Range" id="Text_letter-Range">5px</p>
+                    </div>
+                    <div class="Range_word-spacing">
+                        <input type="checkbox" class="activation_word-Range" id="activation_word-Range">
+
+                        <p class="up" id="label_range_word">Éspacement des mots</p>
+                        <input type="range" min="0" max="100" value="5" class="word-Range" id="word-Range" disabled>
+                        <p class="Text_word-Range" id="Text_word-Range">5px</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="menu4" id="menu4">
+            <p class="TextMenu4 bloquer" id="TextMenu4">Effet de :Hover</p>
+            <div class="sous-menu4" id="sous-menu4">
+                <div class="hover_apercus_modif">
+                    <p style="font-weight: bold; transform: translateY(-0.5px);">U</p>
+                    <p style="font-style: oblique; transform: translateY(2px);">U</p>
+                    <p style="text-decoration: underline; transform: translateY(4px);">U</p>
+                    <p style="text-decoration: overline; transform: translateY(6px);">U</p>
+                    <p style="text-decoration: line-through; transform: translateY(8px);">U</p>
+                </div>
+                <div class="hover_bold" id="Div-chexboxBold">
+                    <input type="checkbox" id="chexboxHoverBold" disabled>
+                    <label class="hover_up">Mettre un effet de gras</label>
+                </div>
+                <div class="hover_Oblique" id="Div-chexboxOblique">
+                    <input type="checkbox" id="chexboxHoverOblique" disabled>
+                    <label class="hover_up">Mettre un effet d'italique</label>
+                </div>
+                <div class="hover_Underline" id="Div-chexboxUnderline">
+                    <input type="checkbox" id="chexboxHoverUnderline" disabled>
+                    <label class="hover_up">Mettre un effet de soulignement</label>
+                </div>
+                <div class="hover_Overline" id="Div-chexboxOverline">
+                    <input type="checkbox" id="chexboxHoverOverline" disabled>
+                    <label class="hover_up">Mettre un effet de surlignement</label>
+                </div>
+                <div class="hover_line-through" id="Div-chexboxline-through">
+                    <input type="checkbox" id="chexboxHoverline-through" disabled>
+                    <label class="hover_up">Barré le texte</label>
+                </div>
+                <hr class="hover_hr_menu3">
+                <div class="AllRange">
+                    <div class="hover_Range_letter-spacing">
+                        <input type="checkbox" class="hover_activation_letter-Range" id="hover_activation_letter-Range" disabled>
+
+                        <p class="hover_up" id="label_range_letter">Espacement des lettres</p>
+                        <input type="range" min="0" max="20" value="5" class="hover_letter-Range" id="hover_letter-Range" disabled>
+                        <p class="Text_hover_letter-Range" id="Text_hover_letter-Range">5px</p>
+                    </div>
+                    <div class="hover_Range_word-spacing">
+                        <input type="checkbox" class="hover_activation_word-Range" id="hover_activation_word-Range" disabled>
+
+                        <p class="hover_up" id="label_range_word">Espacement des mots</p>
+                        <input type="range" min="0" max="100" value="5" class="hover_word-Range" id="hover_word-Range" disabled>
+                        <p class="Text_hover_word-Range" id="Text_hover_word-Range">5px</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="generateur2">
+            
+            <div class="headerGenerateur1"></div>
+            <div class="coloneGenerateur bloquer">
+                <p class="TextColoneGenerateur">1</p>
+                <p class="TextColoneGenerateur">2</p>
+                <p style="padding-bottom: 0.5px;"class="TextColoneGenerateur">3</p>
+                <p style="padding-bottom: 0.5px;"class="TextColoneGenerateur">4</p>
+                <p style="padding-bottom: 0.5px;"class="TextColoneGenerateur">5</p>
+                <p style="padding-bottom: 0.5px;"class="TextColoneGenerateur">6</p>
+                <p style="padding-bottom: 0.5px;"class="TextColoneGenerateur">7</p>
+                <p style="padding-bottom: 0.5px;"class="TextColoneGenerateur">8</p>
+                <p style="padding-bottom: 0.5px;"class="TextColoneGenerateur">9</p>
+                <p style="padding-bottom: 0.5px;"class="TextColoneGenerateur">10</p>
+                <p style="padding-bottom: 0.5px;"class="TextColoneGenerateur">11</p>
+                <p style="padding-bottom: 0.5px;"class="TextColoneGenerateur">12</p>
+                <p style="padding-bottom: 0.5px;"class="TextColoneGenerateur">13</p>
+                <p style="padding-bottom: 0.5px;"class="TextColoneGenerateur">14</p>
+                <p style="padding-bottom: 0.5px;"class="TextColoneGenerateur">15</p>
+                <p style="padding-bottom: 0.5px;"class="TextColoneGenerateur">16</p>
+            </div>
+            <p class="TextGenerateur1 bloquer">Code Généré</p>
+            <div class="ContenuGenerateur bloquer">
+                <p class="TextColoneGenerateur">• _________________________________________________</p>
+                <p class="TextColoneGenerateur">• _________________________________________________</p>
+                <p style="padding-bottom: 0.5px;"class="TextColoneGenerateur">• _________________________________________________</p>
+                <p style="padding-bottom: 0.5px;"class="TextColoneGenerateur">• _________________________________________________</p>
+                <p style="padding-bottom: 0.5px;"class="TextColoneGenerateur">• _________________________________________________</p>
+                <p style="padding-bottom: 0.5px;"class="TextColoneGenerateur">• _________________________________________________</p>
+                <p style="padding-bottom: 0.5px;"class="TextColoneGenerateur">• _________________________________________________</p>
+                <p style="padding-bottom: 0.5px;"class="TextColoneGenerateur">• _________________________________________________</p>
+                <p style="padding-bottom: 0.5px;"class="TextColoneGenerateur">• _________________________________________________</p>
+                <p style="padding-bottom: 0.5px;"class="TextColoneGenerateur">• _________________________________________________</p>
+                <p style="padding-bottom: 0.5px;"class="TextColoneGenerateur">• _________________________________________________</p>
+                <p style="padding-bottom: 0.5px;"class="TextColoneGenerateur">• _________________________________________________</p>
+                <p style="padding-bottom: 0.5px;"class="TextColoneGenerateur">• _________________________________________________</p>
+                <p style="padding-bottom: 0.5px;"class="TextColoneGenerateur">• _________________________________________________</p>
+                <p style="padding-bottom: 0.5px;"class="TextColoneGenerateur">• _________________________________________________</p>
+                <p style="padding-bottom: 0.5px;"class="TextColoneGenerateur">• _________________________________________________</p>
+            </div>
+            <div class="TextContenuGenerateur">
+                <p class="Ligne" id="P2-Ligne1"><span class="blancYellow">#Name </span><span class="blancYellow">{</p><!--nom de la class/id-->
+                <p class="Ligne" id="P2-Ligne2">&emsp;<span class="Bleu">color</span>: <span class="orange">#ffffff</span>;</p><!--couleur-->
+                <p class="Ligne" id="P2-Ligne3"></p><!--font weight-->
+                <p class="Ligne" id="P2-Ligne4"></p><!--font style-->
+                <p class="Ligne" id="P2-Ligne5"></p><!--text décoration-->
+                <p class="Ligne" id="P2-Ligne6"></p><!--éspace des lettre-->
+                <p class="Ligne" id="P2-Ligne7"></p><!--éspace des mots-->
+                <p class="Ligne" id="P2-Ligne8"><span class="blancYellow">}</span></p><!--fermé normale-->
+                <p class="Ligne" id="P2-Ligne9"></p><!--ouvrire hover-->
+                <p class="Ligne" id="P2-Ligne10"></p><!--couleur-->
+                <p class="Ligne" id="P2-Ligne11"></p><!--font weight-->
+                <p class="Ligne" id="P2-Ligne12"></p><!--font style-->
+                <p class="Ligne" id="P2-Ligne13"></p><!--text décoration-->
+                <p class="Ligne" id="P2-Ligne14"></p><!--éspace des lettre--->
+                <p class="Ligne" id="P2-Ligne15"></p><!--éspace des mots-->
+                <p class="Ligne" id="P2-Ligne16"></p><!--fermé hover-->
+            </div>
+        </div>
+        <div class="CopyButton" id="Copy_Button">
+            <p class="TextCopyButton">Copier le text</p>
+            <div class="Confirmation2" id="Confirmation2">
+                <p class="copierText">Copier!</p>
+                <div class="flecheVert"></div>
+            </div>
+        </div>
+    </div>
+
+    <!--Boutton de retour a la 1ere page-->
+    <div class="return"> 
+        <div id="return-CV-Button" class="return-CV-Button">
+            <a id="return-Cv" class="return-Cv"><i id="fa-solid" class="fa-sharp fa-solid fa-arrow-left taille" style="color: #ffffff;"></i></a>
+            <p class="return-text">Retourner au Portfolio</p>
+        </div>
+        <a href="#0" class="return1"><i class="fa-sharp fa-solid fa-arrow-left" style="color: #ffffff;"></i></a>
+        <a href="#0" class="return2"><i class="fa-sharp fa-solid fa-arrow-left" style="color: #ffffff;"></i></a>
+    </div>
+
+    <!--Script pour bloquer le scrool-->
+    <script>
+        document.body.style.overflow = 'hidden';
+        
+    </script>
+
+</body>
+</html>
+

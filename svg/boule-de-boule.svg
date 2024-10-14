@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Calque_2" data-name="Calque 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 456.19 460.46">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+      }
+
+      .cls-1, .cls-2, .cls-3 {
+        stroke-width: 0px;
+      }
+
+      .cls-2 {
+        fill: #333;
+      }
+
+      .cls-3 {
+        fill: url(#New_Pattern_Swatch_51); 
+        opacity: .2;
+      }
+    </style>
+    <pattern id="New_Pattern_Swatch_51" data-name="New Pattern Swatch 51" x="0" y="0" width="29.63" height="29.63" patternTransform="translate(-8255.84 -5191.51) rotate(45) scale(.29)" patternUnits="userSpaceOnUse" viewBox="0 0 29.63 29.63">
+      <g>
+        <rect class="cls-1" x="0" y="0" width="29.63" height="29.63"/>
+        <circle class="cls-2" r="6"/>
+        <circle class="cls-2" cx="29.63" cy=".02" r="6"/>
+        <circle class="cls-2" cy="29.62" r="6" transform="translate(-24.73 13.31) rotate(-56.6)"/>
+        <circle class="cls-2" cx="29.63" cy="29.63" r="6"/>
+      </g>
+    </pattern>
+  </defs>
+  <g id="Calque_1-2" data-name="Calque 1">
+    <ellipse class="cls-3" cx="228.1" cy="230.23" rx="228.1" ry="230.23"/>
+  </g>
+</svg>

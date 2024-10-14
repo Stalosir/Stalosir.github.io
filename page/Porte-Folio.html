@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.65">
+    <title>Politique de confidentialité - Mariotte théo</title>
+
+<!--Icone-->
+<link rel="icon" type="image/png" href="../Images/FavIcone/incone.png">
+
+<!--lien pour css et js-->
+<link rel="stylesheet" href="../css/style.css">
+<script src="../js/Portfolio.js"></script>
+<script src="../js/header.js"></script>
+
+<!--CDN site d'icone-->
+<script src="https://kit.fontawesome.com/a72ed54e0c.js" crossorigin="anonymous"></script>
+
+<!--pour fonction click js-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</head>
+<body> 
+
+<!--Entête-->
+
+<header role="header">
+    <nav class="menu" role="navigation">
+        <div class=inner>
+            <div class="m-left">
+                <h2 style="margin-top:5px">Mariotte Théo</h2>
+            </div>
+            <div class="m-right">
+                <a href="../home.html" class="m-link"><i class="fa-sharp fa-solid fa-house"></i> Accueil</a>
+                <a href="Porte-Folio.html" class="m-link active"><i class="fa-sharp fa-solid fa-newspaper"></i> Porte-folio</a>
+                <a href="Contact.html" class="m-link"><i class="fa-sharp fa-solid fa-envelope"></i> Contact</a>
+            </div>
+            <div class="m-nav">
+                <span class="m-nav-icon">    
+                </span>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<!--FIN de l'entête-->
+    <section class="section">
+        <img class="circle3" src="../svg/boule-de-boule.svg" alt="cardriage de point SVG">
+        <img class="circle4" src="../svg/2cercle.svg" alt="cercle imbriquer SVG">
+        <div class="contenu2">
+            <div class="contenu-2">
+                <div class="word2">
+                    <h1><u>C'est quoi un PortFolio?</u></h1>
+                    <p>Un portfolio c'est une chose personnelle à chacun, pour faire simple c'est un dossier de toutes les réalisations.<br>Ce dossier est généralement montré pendant des recherches d'emploi pour justifier de ces compétences et de son vécu sur le plan professionnel.</p>
+                </div>
+            </div>
+        </div>
+        <div class="contenu-PF">
+            <div class="word2">
+                <h2>Réalisation Graphique:</h2>
+                <p>------------------------------------------------</p>
+            </div>
+            <div id="container-firt" class="container">
+                <!-- Les cartes seront générées ici -->
+            </div>
+            <div class="word2 corection_2">
+                <h2>Projet Développement:</h2>
+                <p>------------------------------------------------</p>
+            </div>
+            <div id="container-scd" class="container-scd">
+                <!-- Les cartes seront générées ici -->
+            </div>
+        </div>
+    </section>
+
+
+    <!--pied de page-->
+
+<footer role="footer">
+<div class="contenu-footer">
+    <div class="bloc footer-pageDuSite">
+        <h3>Liste des pages du site</h3>
+        <ul class="liste-pageDuSite">
+          <a class="liste-page" href="../home.html" class="m-link"> Accueil<br></a>
+          <a class="liste-page" href="Porte-Folio.html" class="m-link"> Porte-folio<br></a>
+          <a class="liste-page" href="Contact.html" class="m-link"> Contact</a>
+        </ul>
+    </div>
+    <div class="bloc footer-contact">
+        <h3>Restons en contact</h3>
+        <p>06 18 86 32 76</p>
+        <p>theo.mariotte@my-digital-school.org</p>
+    </div>
+    <div class="bloc footer-media">
+        <h3>Réseaux</h3>
+        <ul class="liste-media">
+            <li><a href="https://www.linkedin.com/in/théo-mariotte" class="face"><i class="fa-brands fa-linkedin"></i> Linkedin</a></li>
+        </ul>
+    </div>
+    <div class="bloc footer-horraire">
+        <h3>Législatif</h3>
+            <ul class="liste-horraire">
+                <li><a href="politique.html">politique de confidentialité</a></li>
+            </ul>
+    </div>
+</div>
+</footer>
+
+<!--FIN du pied de page-->
+
+<script type="text/html" id="card-template">
+    <div class="card">
+        <h3 class="title"><b>{{title}}</b><br><br>{{subtitle}}</h3>
+        <div class="bar">
+            <div class="emptybar"></div>
+            <div class="filledbar"></div>
+        </div>
+        <div class="image-card"><img src="{{image}}" alt="{{alt}}"></div>
+    </div>
+</script>
+
+
+</body>
+</html>
