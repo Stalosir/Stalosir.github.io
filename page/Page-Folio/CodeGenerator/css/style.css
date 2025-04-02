@@ -1,1358 +1,298 @@
 
-/*base du site*/
-
-html{
-    height: 300%;
-    width: 100%;
-    scroll-behavior: smooth;
-    background: linear-gradient(-20deg, rgba(203,5,168,1) 15%, rgba(44,126,255,1) 85%);
-    animation: background-effect 15s ease infinite;
-    background-size: 400%, 400%;
+@font-face {
+    font-family: "Rainbow"; /* Nom personnalisé */
+    src: url("font/Rainbow.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
 }
 
 body {
-    font-family: Arial, sans-serif;
+    background-image: url(image/Background.jpg);
     text-align: center;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    overflow: hidden;
-}
-
-.bloquer {
-    -webkit-user-select: none; /* Pour les navigateurs WebKit (Chrome, Safari, etc.) */
-    -moz-user-select: none; /* Pour les navigateurs basés sur Gecko (Firefox) */
-    -ms-user-select: none; /* Pour Internet Explorer/Edge */
-    user-select: none; /* Standard */
+    margin: 20px;
+    font-size: 50px;
 }
 
 h1 {
-    font-size: 36px;
-    color: white;
-    text-shadow: 1px 1px #444
+    color: #fff;
+    font-family: "Rainbow", sans-serif;
 }
 h2 {
-    font-size: 36px;
-    color: white;
-    text-shadow: 1px 1px #444
+    color: #fff;
+    font-family: "Arial", sans-serif;
+    font-size: 30px;
+}
+h3 {
+    color: #fff;
+    font-family: "Arial", sans-serif;
+    font-size: 20px;
+}
+p {
+    color: #fff;
+    font-family: "Arial", sans-serif;
+    font-size: 25px;
 }
 
-input[type="checkbox"], input[type="range"]{
+/* Conteneur principal */
+.checkbox-container {
+    cursor: pointer;
+    user-select: none;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+
+}
+
+/* Masquer la checkbox par défaut */
+.checkbox-container input {
+    display: none;
+}
+
+/* Apparence de la boîte personnalisée */
+.checkbox-custom {
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    background-color: #ddd;
+    color: #333;
+    font-weight: bold;
+    transition: background 0.3s, color 0.3s;
+    text-transform: uppercase;
+}
+
+/* Effet quand la checkbox est cochée */
+.checkbox-container input:checked + .checkbox-custom {
+    background-color: #868686;
+    color: white;
+}
+
+#operatorSection {
+    margin: 0 auto; /* Centre horizontalement */
+    width: 40%; /* Définit une largeur */
+}
+
+.operator-container {
+    width: 100%; /* Assurez-vous qu'il prend toute la largeur disponible */
+    display: flex;
+    flex-direction: row; /* Permet d'aligner les enfants en colonne */
+    align-items: center; /* Centre les enfants horizontalement */
+    justify-content: center; /* Centre verticalement si nécessaire */
+}
+
+
+.buttons button {
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
     cursor: pointer;
 }
 
-/*Des couleur pour le générateur de code*/
-
-.blancYellow{
-    color: #d7ce7d;
-}
-.Yellow{
-    color: #ffe134;
-}
-.vertClaire{
-    color: #b5cea8;
-}
-.blanc{
-    color: white;
-}
-.orange{
-    color: #ce9164;
-}
-.Bleu{
-    color: #51bbfe;
+.hidden {
+    display: none;
 }
 
-
-/*ancre de naviagtion pour le 3 page*/
-
-p0{
-    position: absolute; 
-    top:0%;
-}
-p10{
-    position: absolute;
-    top:100%;
-}
-p20{
-    position: absolute;
-    top:200%;
-}
-
-/*Fin de la base du site*/
-
-/*Css de la page1*/
-
-.page1{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    height: 100%;
-    width: 100%;
-}
-
-.boutons {
-    display: flex;
-    justify-content: center;
+#result {
     margin-top: 20px;
 }
 
-.bouton {
-    height: 40px;
-    width: 220px;
-    margin: 0 60px; /* haut | droit | bas | gauche */
-    padding-top: 10px;
-    font-size: 24px;
-    text-decoration: none;
-    border-radius: 20px;
-    background-color: #0060c6;
-    color: #fff;
-    cursor: pointer;
+#result img {
+    max-width: 180px;
+    display: block;
+    margin: 10px auto;
+}
+#defenderImage{
+    border: 2px solid #aaaaaa;
+    background-color: #1f1f1f;
+    padding: 10px;
+}
+#attackerImage{
+    border: 2px solid #aaaaaa;
+    background-color: #1f1f1f;
+    padding: 10px;
 }
 
-.bouton:hover{
-    background-color: #f9f9fa;
-    color: #0060c6;
-    transition: 0.6s;
-}
-
-/*Fin du css de la page1 */
-
-/*Css de la page2*/
-
-.page2{
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    top: 100%;
-}
-
-.page2 #FormeVisuels{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 200px;
-    height: 200px;
-    background-color: rgb(186, 0, 0);
-}
-.fa-arrow-left{
-    font-size: 50px;
-}
-.taille{
-    color: white;
-    font-size: 30px;
-}
-
-.page2 .rotation0{
-    transform: rotate(0deg);
-}
-
-.return-CV-Button{
-    position: absolute;
-    top: 6%;
-    left: 4%;
-    overflow: hidden;
-    background-color: #0060c6;
-    border-radius: 20px;
-    width: 50px;
-    height: 40px;
-    padding-top: 10px;
-    cursor: pointer;
-}
-.return-CV-Button:hover{
-    animation: grandit 0.5s forwards;
-}
-.return-CV-Button:not(:hover){
-    animation: grandit_bis 0.5s forwards;
-}
-
-.return-text{
-    position: absolute;
-    transform: translate(55px, -47px);
-    font-size: 20px;
-    color: white;
-    white-space: nowrap;
-    text-overflow: ellipsis
-}
-
-.return1{
-    position: absolute;
-    top: 106%;
-    left: 4%;
-}
-
-.return1:hover{
-    animation: arrow_rotate 0.3s ease-in-out forwards;
-}
-
-.return1:not(:hover) {
-    animation: arrow_rotate_bis 0.3s ease-in-out forwards;
-}
-
-.page2 .CaseVisuelPage2{
-    position: absolute;
-    top: 35%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    height: 40%;
-    width: 32%;
-    border-radius: 18px;
-    border: 2px solid #000;
-    background: rgba( 255, 255, 255, 0.2 );
-    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-    backdrop-filter: blur( 2.5px );
-    -webkit-backdrop-filter: blur( 2.5px );
-}
-
-.page2 .TextMenu{
-    transform: translateY(-5px);
-    color: white;
-    text-shadow: 1px 1px #444
-}
-
-.page2 .menu1{
-    position: absolute;
-    height: 38px;
-    width: 195px;
-    left: 69%;
-    background: #0060c6;
-    border-radius: 15px;
-    font-size: 15px;
-} 
-
-.page2 .sous-menu1{
-    position: absolute;
-    height: 260px;
-    width: 165px;
-    left: 8%;
-    top: 100%;
-    background: rgba(0, 0, 0, 0.7);;
-    border-radius: 0 0 20px 20px;
-    color: #f9f9fa;
-}
-
-.page2 #textboxcusto{
-    border-radius: 8px;
-    background-color: #dadada;
-}
-
-.page2 .contenu-sous-menu{
-    position: absolute;
-    text-align: start;
-    left: 10px;
-}
-
-.page2 .custom-textBox{
-    width: 120px;
-    transform: translateY(-10px);
-}
-.page2 .custom-textBoxBis{
-    position: absolute;
-    width: 130px;
-    left: 35px;
-}
-.page2 .checkbox-move1{
-    position: absolute;
-    top: 267px;
-    left: 5px;
-    transform: translateY(-75px);
-    width: 18px;
-    height: 18px;
-}
-
-.page2 .menu2{
-    position: absolute;
-    height: 38px;
-    width: 195px;
-    left: 83%;
-    background: #0060c6;
-    border-radius: 15px;
-    font-size: 15px;
-} 
-
-.page2 .sous-menu2{
-    position: absolute;
-    height: 120px;
-    width: 165px;
-    left: 10%;
-    top: 100%;
-    background: rgba(0, 0, 0, 0.7);;
-    border-radius: 0 0 20px 20px;
-    color: #f9f9fa;
-}
-
-.page2 .color-move1{
-    position: absolute;
-    left: 65px;
-    transform: translateY(-48px);
-    width: 75px;
-    height: 30px;
-}
-.page2 #disabledColor{
-    color: rgba(189, 189, 189, 0.5);
-}
-
-.page2 .menu3{
-    position: absolute;
-    height: 38px;
-    width: 610px;
-    top: 60%;
-    left: 55%;
-    background: #0060c6;
-    border-radius: 15px;
-    font-size: 15px;
-} 
-
-.page2 .sous-menu3{
-    position: absolute;
-    height: 200px;
-    width: 574px;
-    left: 3.5%;
-    top: 100%;
-    background: rgba(0, 0, 0, 0.7);;
-    border-radius: 0 0 20px 20px;
-    color: #f9f9fa;
-}
-
-.page2 i.fa-chevron-up{
-    font-size: 35px;
-}
-
-.page2 .HGau{
-    position: absolute;
-    top: 5%;
-    left: 60%;
-    width: 45px;
-    height: 20px;
-    border: 1px solid white;
-    border-radius: 4px;
-}
-.page2 .hautGauche{
-    position: absolute;
-    top: 85%;
-    left: 20%;
-    transform: rotate(-45deg);
-}
-.page2 #hautGauche{
-    position: absolute;
-    left: 1%;
-    top: 1%;
-    width: 17px;
-    border: none;
-    background-color:rgba(47, 47, 47, 0.6);
-    border-radius: 4px;
-    color: white;
-    font-size: 14px;
-}
-.page2 #hautGaucheBis{
-    position: absolute;
-    top: -72%;
-    left: 50%;
-    width: 14px;
-    color: white;
-    font-size: 15px;
-}
-
-.page2 .HDro{
-    position: absolute;
-    top: 5%;
-    left: 80%;
-    width: 45px;
-    height: 20px;
-    border: 1px solid white;
-    border-radius: 4px;
-}
-.page2 .hautDroit{
-    position: absolute;
-    top: 85%;
-    transform: rotate(45deg);
-}
-.page2 #hautDroit{
-    position: absolute;
-    left: 1%;
-    top: 1%;
-    width: 17px;
-    border: none;
-    background-color:rgba(47, 47, 47, 0.6);
-    border-radius: 4px;
-    color: white;
-    font-size: 14px;
-}
-.page2 #hautDroitBis{
-    position: absolute;
-    top: -72%;
-    left: 50%;
-    width: 14px;
-    color: white;
-    font-size: 15px;
-}
-
-.page2 .BGau{
-    position: absolute;
-    top: 80%;
-    left: 80%;
-    width: 45px;
-    height: 20px;
-    border: 1px solid white;
-    border-radius: 4px;
-}
-.page2 .basGauche{
-    position: absolute;
-    top: -160%;
-    transform: rotate(135deg);
-}
-.page2 #basGauche{
-    position: absolute;
-    left: 1%;
-    top: 1%;
-    width: 17px;
-    border: none;
-    background-color:rgba(47, 47, 47, 0.6);
-    border-radius: 4px;
-    color: white;
-    font-size: 14px;
-}
-.page2 #basGaucheBis{
-    position: absolute;
-    top: -72%;
-    left: 50%;
-    width: 14px;
-    color: white;
-    font-size: 15px;
-}
-
-.page2 .BDro{
-    position: absolute;
-    top: 80%;
-    left: 60%;
-    width: 45px;
-    height: 20px;
-    border: 1px solid white;
-    border-radius: 4px;
-}
-.page2 .basDroit{
-    position: absolute;
-    top: -165%;
-    left: 20%;
-    transform: rotate(-135deg);
-}
-.page2 #basDroit{
-    position: absolute;
-    left: 1%;
-    top: 1%;
-    width: 17px;
-    border: none;
-    background-color:rgba(47, 47, 47, 0.6);
-    border-radius: 4px;
-    color: white;
-    font-size: 14px;
-}
-.page2 #basDroitBis{
-    position: absolute;
-    top: -72%;
-    left: 50%;
-    width: 14px;
-    color: white;
-    font-size: 15px;
-}
-.page2 .lierLesText{
-    position: absolute;
-    top: 42%;
-    left: 62.25%;
-    width: 130px;
-    height: 20px;
-    border: 2px solid white;
-    cursor: pointer;
-}
-.page2 .largeur-personnalisee {
-    width: 145px;
-    left: 61%;
-}
-.page2 .TextLier{
-    transform: translateY(-14px);
-}
-
-.page2 .AllRange{
-    position: absolute;
-    height: 100%;
-    width: 10%;
-    left: 40%;
-}
-.page2 .VerticalRange {
-    height: 10%; /* Hauteur de votre slider vertical */
-    display: inline-block;
-    position: relative;
-    transform: rotate(270deg); /* Rotation de 270 degrés pour le slider */
-    transform-origin: left bottom;
-    top: 85%;
-    left: 60px;
-    width: 175px;
-}
-.page2 .Range {
-    width: 100%;
-    height: 100%;
-    writing-mode: bt-lr; /* Pour inverser le texte */
-}
-.page2 .TextRange{
-    position: absolute;
-    transform: translateY(70px);
-    font-size: 18px;
-    left: 15%;
-}
-.page2 #gray2{
-    color: rgba(189, 189, 189, 0.5);
-}
-.page2 #gray3{
-    color: rgba(189, 189, 189, 0.5);
-}
-.page2 #TextRange{
-    color: rgba(189, 189, 189, 0.5);
-}
-.page2 .boder{
-    height: 100%;
-    width: 40%;
-    text-align: start;
-}
-.page2 .questionBoder{
-    position: absolute;
-    left: 10%;
-    top: -2%;
-}
-.page2 #questionBoder{
-    position: absolute;
-    left: 3%;
-    top: 7%;
-    width: 20px;
-    height: 20px;
-}
-.page2 .colorBorder{
-    position: absolute;
-    top: 23%;
-    left: 3%;
-}
-.page2 #ColorBordure{
-    position: absolute;
-    top: 32%;
-    left: 25%;
-}
-.page2 .HovercolorBorder{
-    position: absolute;
-    top: 55%;
-    left: 3%;
-}
-.page2 #HoverColorBordure{
-    position: absolute;
-    top: 64%;
-    left: 31%;
-}
-
-.page2 .invisible {
-    display: none;
-    z-index: 100;
-}
-  
-.page2 #infoBulle {
-    position: absolute;
-    background-color: #333;
-    color: #fff;
-    padding: 5px;
-    border-radius: 5px;
-    pointer-events: none; /* Évite que l'info-bulle ne bloque les interactions avec les éléments en dessous */
-}
-
-
-.page2 .generateur1{
-    position: absolute;
-    height: 580px;
-    width: 380px;
-    top: 15%;
-    left: 6%;
-    background: #404244;
-    border-radius: 15px;
-    font-size: 15px;
-    border: 3px solid #343637;
-}
-
-.page2 .TextGenerateur1{
-    transform: translateY(-5px);
-    color: white;
-    text-shadow: 1px 1px #444
-}
-
-.page2 .headerGenerateur1{
-    position: absolute;
-    height: 35px;
-    width: 380px;
-    background: #313233;
-    border-radius: 13px 13px 0px 0px;
-    font-size: 15px;
-}
-
-.page2 .ContenuGenerateur{
-    position: absolute;
-    left: 30px;
-    top: 35px;
-    background-color: #404244;
-    width: 350px;
-    height: 94%;
-    border-radius: 0px 0px 13px 0px;
-}
-.page2 .TextContenuGenerateur{
-    position: absolute;
-    left: 45px;
-    top: 35px;
-    width: 350px;
-    height: 94%;
-    text-align: start;
-    border-radius: 0px 0px 13px 0px;
-    transform: translateY(-6px);
-    color: rgb(238, 238, 238);
-    text-shadow: 1px 1px #444;
-}
-
-.page2 .coloneGenerateur{
-    position: absolute;
-    height: 94%;
-    width: 30px;
-    top: 6%;
-    background: #4b4c4d;
-    border-radius: 0px 0px 0px 13px;
-    font-size: 15px;
-}
-.page2 .TextColoneGenerateur{
-    transform: translateY(-5px);
-    color: rgb(190, 190, 190);
-    text-shadow: 1px 1px #444;
-    opacity: 0.5;
-
-}
-.page2 .Ligne{
-    font-size: 18px;
-    line-height: 0.8;
-    transform: translateY(-1px);
-}
-
-.page2 .CopyButton{
-    position: absolute;
-    width: 200px;
-    height: 40px;
-    border-radius: 18px;
-    background-color: #0060c6;
-    color: white;
-    top: 65%;
-    left: 35%;
-    font-size: 20px;
-    font-weight: bold;
-    transition: 0.2s;
-    cursor: pointer;
-}
-.page2 .CopyButton:hover{
-    background-color: #f9f9fa;
-    color: #0060c6;
-}
-.page2 .TextCopyButton{
-    transform: translateY(-12px);
-}
-
-.page2 .Confirmation{
-    position: absolute;
-    width: 80px;
-    height: 25px;
-    bottom: 125%;
-    left: 29%;
-    border-radius: 10px;
-    background-color: rgb(62, 207, 26);
-}
-.page2 #Confirmation {
-    opacity: 0;
-    transition: opacity 0.2s; /* Définit la transition de l'opacité sur 1 seconde avec une accélération "ease" (lente au début, puis plus rapide) */
-}
-.page2 .copierText{
-    font-size: 12px;
-    color: white;
-    transform: translateY(-6.5px);
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 1),;
-    z-index: 0;
-}
-.page2 .flecheVert{
-    position: absolute;
-    transform: rotate(45deg);
-    width: 10px;
-    height: 10px;
-    top: 75%;
-    left: 45%;
-    background-color: rgb(62, 207, 26);
-    z-index: 1;
-}
-/*Fin du Css de la Page2*/
-
-/*Css de la page3*/
-
-.page3{
+.operator {
     display: flex;
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    top: 200%;
-}
-
-.page3 #textVisuels{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    vertical-align: middle;
+    flex-direction: column; /* Met le titre au-dessus */
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #aaaaaa;
+    padding: 20px;
+    width: 90%;
+    height: auto;
     color: white;
-    text-shadow: 1px 1px #444;
-    font-size: 30px;
-}
-#rendu {
-    white-space: nowrap; /* Empêcher le texte de s'enrouler sur une nouvelle ligne */
-}
-.page3 .rotation0{
-    transform: rotate(0deg);
-}
-.page3 .CaseVisuelPage2{
-    position: absolute;
-    top: 24%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    height: 16%;
-    width: 32%;
-    border-radius: 18px;
-    border: 2px solid #000;
-    background: rgba( 255, 255, 255, 0.2 );
-    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-    backdrop-filter: blur( 2.5px );
-    -webkit-backdrop-filter: blur( 2.5px );
-}
-
-.page3 .TextMenu{
-    transform: translateY(-5px);
-    color: white;
-    text-shadow: 1px 1px #444
-}
-
-.page3 .TextMenu4{
-    transform: translateY(-5px);
-    color: #a1a1a1;
-    text-shadow: 1px 1px #444
-}
-
-.page3 .menu0{
-    position: absolute;
-    top: 35%;
-    height: 38px;
-    width: 500px;
-    left: 34%;
-    background: #0060c6;
-    border-radius: 15px;
-    font-size: 15px;
-} 
-
-.rendu-textBox{
-    position: absolute;
-    top: 30%;
-    left: 105%;
-    width: 235px;
-    border-radius: 5px;
-    background-color: #dadada;
-}
-
-.page3 .sous-menu0{
-    position: absolute;
-    height: 50px;
-    width: 460px;
-    left: 4%;
-    top: 100%;
-    background: rgba(0, 0, 0, 0.7);;
-    border-radius: 0 0 20px 20px;
-    color: #f9f9fa;
-}
-
-
-.page3 .menu1{
-    position: absolute;
-    top: 10%;
-    height: 38px;
-    width: 195px;
-    left: 69%;
-    background: #0060c6;
-    border-radius: 15px;
-    font-size: 15px;
-} 
-
-.page3 .sous-menu1{
-    position: absolute;
-    height: 260px;
-    width: 165px;
-    left: 8%;
-    top: 100%;
-    background: rgba(0, 0, 0, 0.7);;
-    border-radius: 0 0 20px 20px;
-    color: #f9f9fa;
-}
-
-.page3 #textbox_custo{
-    border-radius: 8px;
-    background-color: #dadada;
-}
-
-.page3 .contenu-sous-menu{
-    position: absolute;
-    text-align: start;
-    left: 10px;
-}
-
-.page3 .custom-textBox{
-    width: 120px;
-    transform: translateY(-10px);
-}
-.page3 .custom-textBoxBis{
-    position: absolute;
-    width: 130px;
-    left: 35px;
-}
-.page3 .checkbox-move1{
-    position: absolute;
-    top: 267px;
-    left: 5px;
-    transform: translateY(-75px);
-    width: 18px;
-    height: 18px;
-}
-
-.page3 .menu2{
-    position: absolute;
-    top: 10%;
-    height: 38px;
-    width: 195px;
-    left: 83%;
-    background: #0060c6;
-    border-radius: 15px;
-    font-size: 15px;
-} 
-
-.page3 .sous-menu2{
-    position: absolute;
-    height: 120px;
-    width: 165px;
-    left: 8.2%;
-    top: 100%;
-    background: rgba(0, 0, 0, 0.7);;
-    border-radius: 0 0 20px 20px;
-    color: #f9f9fa;
-}
-
-.page3 .color-move1{
-    position: absolute;
-    left: 65px;
-    transform: translateY(-48px);
-    width: 75px;
-    height: 30px;
-}
-.page3 #disabledColor{
-    color: rgba(189, 189, 189, 0.5);
-}
-
-.page3 .menu3{
-    position: absolute;
-    height: 38px;
-    width: 610px;
-    top: 43%;
-    left: 61.45%;
-    background: #0060c6;
-    border-radius: 15px;
-    font-size: 15px;
-} 
-
-.page3 .sous-menu3{
-    position: absolute;
-    height: 200px;
-    width: 574px;
-    left: 3.5%;
-    top: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    border-radius: 0 0 20px 20px;
-    color: #f9f9fa;
-}
-
-.page3 .apercus_modif{
-    position: absolute;
-    top: 1%;
-    left: 2%;
-}
-.page3 .bold{
-    position: absolute;
-    top: 8%;
-    left: 5%;
-}
-.page3 .Oblique{
-    position: absolute;
-    top: 25%;
-    left: 5%;
-}
-.page3 .Underline{
-    position: absolute;
-    top: 42%;
-    left: 5%;
-}
-.page3 .Overline{
-    position: absolute;
-    top: 59%;
-    left: 5%;
-}
-.page3 .line-through{
-    position: absolute;
-    top: 76%;
-    left: 5%;
-}
-.up{
-    position: absolute;
-    width: 300px;
-    text-align: start;
-    transform: translateY(1px);
-}
-
-.page3 .hr_menu3{
-    position: absolute;
-    top: 45%;
-    left: 32%;
-    transform: rotate(90deg);
-    color: #fff;
-    width: 180px;
-    height: 3px;
-    border: none;
-    background-color: #fff;
-    opacity: 0.8;
-    border-radius: 50px;
-}
-
-.page3 .activation_letter-Range{
-    position: absolute;
-    transform: translate(-31px, 24px);
-    width: 15px;
-}
-
-.page3 .Range_letter-spacing{
-    position: absolute;
-    left: 55%;
-    top: 10%;
-}
-
-.page3 .letter-Range{
-    position: absolute;
-    transform: translate(-2px, 40px);
-    width: 158px;
-}
-
-.page3 .activation_word-Range{
-    position: absolute;
-    transform: translate(-31px, 24px);
-    width: 15px;
-}
-
-.page3 .Range_word-spacing{
-    position: absolute;
-    left: 55%;
-    top: 50%;
-}
-
-.page3 .word-Range{
-    position: absolute;
-    transform: translate(-2px, 40px);
-    width: 158px;
-}
-
-.Text_letter-Range{
-    position: absolute;
-    transform: translate(175px, 6px);
-    font-size: 19px;
-}
-
-.Text_word-Range{
-    position: absolute;
-    transform: translate(175px, 6px);
-    font-size: 19px;
-}
-
-.Text_hover_letter-Range{
-    position: absolute;
-    transform: translate(175px, 6px);
-    font-size: 19px;
-}
-
-.Text_hover_word-Range{
-    position: absolute;
-    transform: translate(175px, 6px);
-    font-size: 19px;
-}
-
-.page3 .menu4{
-    position: absolute;
-    height: 38px;
-    width: 610px;
-    top: 70%;
-    left: 61.45%;
-    background: rgba(87, 116, 146, 0.7);
-    border-radius: 15px;
-    font-size: 15px;
-} 
-
-.page3 .sous-menu4{
-    position: absolute;
-    height: 200px;
-    width: 574px;
-    left: 3.5%;
-    top: 100%;
-    background: rgba(54, 54, 54, 0.7);
-    border-radius: 0 0 20px 20px;
-    color: #a1a1a1;
-}
-
-.page3 .hover_apercus_modif{
-    position: absolute;
-    top: 1%;
-    left: 2%;
-}
-.page3 .hover_bold{
-    position: absolute;
-    top: 8%;
-    left: 5%;
-}
-.page3 .hover_Oblique{
-    position: absolute;
-    top: 25%;
-    left: 5%;
-}
-.page3 .hover_Underline{
-    position: absolute;
-    top: 42%;
-    left: 5%;
-}
-.page3 .hover_Overline{
-    position: absolute;
-    top: 59%;
-    left: 5%;
-}
-.page3 .hover_line-through{
-    position: absolute;
-    top: 76%;
-    left: 5%;
-}
-.hover_up{
-    position: absolute;
-    width: 300px;
-    text-align: start;
-    transform: translateY(1px);
-}
-
-.page3 .hover_hr_menu3{
-    position: absolute;
-    top: 45%;
-    left: 32%;
-    transform: rotate(90deg);
-    color: #fff;
-    width: 180px;
-    height: 3px;
-    border: none;
-    background-color: #fff;
-    opacity: 0.8;
-    border-radius: 50px;
-}
-
-.page3 .hover_activation_letter-Range{
-    position: absolute;
-    transform: translate(-31px, 24px);
-    width: 15px;
-}
-
-.page3 .hover_Range_letter-spacing{
-    position: absolute;
-    left: 55%;
-    top: 10%;
-}
-
-.page3 .hover_letter-Range{
-    position: absolute;
-    transform: translate(-2px, 40px);
-    width: 158px;
-}
-
-.page3 .hover_activation_word-Range{
-    position: absolute;
-    transform: translate(-31px, 24px);
-    width: 15px;
-}
-
-.page3 .hover_Range_word-spacing{
-    position: absolute;
-    left: 55%;
-    top: 50%;
-}
-
-.page3 .hover_word-Range{
-    position: absolute;
-    transform: translate(-2px, 40px);
-    width: 158px;
-}
-
-
-
-.page3 .largeur-personnalisee {
-    width: 145px;
-    left: 61%;
-}
-.page3 .TextLier{
-    transform: translateY(-14px);
-}
-
-.page3 .invisible {
-    display: none;
-    z-index: 100;
-}
-  
-.page3 #infoBulle {
-    position: absolute;
-    background-color: #333;
-    color: #fff;
-    padding: 5px;
-    border-radius: 5px;
-    pointer-events: none; /* Évite que l'info-bulle ne bloque les interactions avec les éléments en dessous */
-}
-
-
-.page3 .generateur2{
-    position: absolute;
-    height: 580px;
-    width: 460px;
-    top: 15%;
-    left: 4%;
-    background: #404244;
-    border-radius: 15px;
-    font-size: 15px;
-    border: 3px solid #343637;
-}
-
-.page3 .TextGenerateur1{
-    transform: translateY(-5px);
-    color: white;
-    text-shadow: 1px 1px #444
-}
-
-.page3 .headerGenerateur1{
-    position: absolute;
-    height: 35px;
-    width: 460px;
-    background: #313233;
-    border-radius: 13px 13px 0px 0px;
-    font-size: 15px;
-}
-
-.page3 .ContenuGenerateur{
-    position: absolute;
-    left: 30px;
-    top: 35px;
-    background-color: #404244;
-    width: 430px;
-    height: 94%;
-    border-radius: 0px 0px 13px 0px;
-}
-.page3 .TextContenuGenerateur{
-    position: absolute;
-    left: 50px;
-    top: 34px;
-    width: 400px;
-    height: 94%;
-    text-align: start;
-    border-radius: 0px 0px 13px 0px;
-    transform: translateY(-6px);
-    color: rgb(238, 238, 238);
-    text-shadow: 1px 1px #444;
-}
-
-
-.page3 .coloneGenerateur{
-    position: absolute;
-    height: 94%;
-    width: 30px;
-    top: 6%;
-    background: #4b4c4d;
-    border-radius: 0px 0px 0px 13px;
-    font-size: 15px;
-}
-.page3 .TextColoneGenerateur{
-    transform: translateY(-5px);
-    color: rgb(190, 190, 190);
-    text-shadow: 1px 1px #444;
-    opacity: 0.5;
-
-}
-.page3 .Ligne{
-    font-size: 18px;
-    line-height: 0.8;
-    transform: translateY(-1px);
-}
-
-.page3 .CopyButton{
-    position: absolute;
-    width: 200px;
-    height: 40px;
-    border-radius: 18px;
-    background-color: #0060c6;
-    color: white;
-    top: 65%;
-    left: 35%;
-    font-size: 20px;
-    font-weight: bold;
-    transition: 0.2s;
-    cursor: pointer;
-}
-.page3 .CopyButton:hover{
-    background-color: #f9f9fa;
-    color: #0060c6;
-}
-.page3 .TextCopyButton{
-    transform: translateY(-12px);
-}
-
-.page3 .Confirmation2{
-    position: absolute;
-    width: 80px;
-    height: 25px;
-    bottom: 125%;
-    left: 29%;
     border-radius: 10px;
-    background-color: rgb(62, 207, 26);
-}
-.page3 #Confirmation2 {
-    opacity: 0;
-    transition: opacity 0.2s; /* Définit la transition de l'opacité sur 1 seconde avec une accélération "ease" (lente au début, puis plus rapide) */
-}
-.page3 .copierText{
-    font-size: 12px;
-    color: white;
-    transform: translateY(-6.5px);
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 1),;
-    z-index: 0;
-}
-.page3 .flecheVert{
-    position: absolute;
-    transform: rotate(45deg);
-    width: 10px;
-    height: 10px;
-    top: 75%;
-    left: 45%;
-    background-color: rgb(62, 207, 26);
-    z-index: 1;
+    background-color: rgba(83, 83, 83, 0.26);
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+    margin: 50px;
 }
 
-.return2{
-    position: absolute;
-    top: 206%;
-    left: 4%;
-}
-.return2:hover{
-    animation: arrow_rotate 0.3s ease-in-out forwards;
-}
-.return2:not(:hover) {
-    animation: arrow_rotate_bis 0.3s ease-in-out forwards;
-}
-.titrePage3{
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-}
-/*Fin du Css de la Page3*/
-
-/*Animation*/
-
-@keyframes arrow_rotate {
-    from{
-        transform: rotate(0deg);
-    }
-    to{
-        transform: rotate(90deg);
-    }
-}
-@keyframes arrow_rotate_bis {
-    from{
-        transform: rotate(90deg);
-    }
-    to{
-        transform: rotate(0deg);
-    }
+/* Titre du rôle (Attaquant / Défenseur) */
+.operator_class {
+    width: 100%; /* Pour qu'il prenne toute la largeur */
+    text-align: center;
+    padding-bottom: 10px;
+    font-size: 20px;
+    text-transform: uppercase;
+    border-bottom: 2px solid white;
 }
 
-@keyframes background-effect {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
+/* Conteneur des colonnes */
+.operator-columns {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
 }
 
-@keyframes fermer {
-    from{
-        height: 100%;
-    }
-    to{
-        height: 0%;
-    }
+/* Colonne 1 : Image + Nom */
+.colone_1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
 
-@keyframes ValidationCopy {
-    0%{
-        opacity: 0;
-    }
-    100%{
-        opacity: 1;
-    }
+.colone_1 img {
+    width: 120px;
+    height: auto;
+    border-radius: 10px;
+    margin-top: 10px;
+    border: 2px solid white;
 }
 
-@keyframes grandit {
-    from{
-        width: 50px;
-    }
-    to{
-        width: 260px;
-    }
+/* Conteneur regroupant colone_2 et colone_3 */
+.colone_right {
+    display: flex;
+    flex-direction: row; /* Par défaut, en ligne */
+    gap: 10px;
 }
-@keyframes grandit_bis {
-    from{
-        width: 260px;   
-    }
-    to{
-        width: 50px;
-    }
+
+/* Colonnes des armes */
+.colone_2, .colone_3 {
+    display: flex;
+    flex-direction: column;
 }
-@keyframes arrow_return {
-    from{
-        transform: translateX(0px);
-    }
-    to{
-        transform: translateX(-102px);
-    }
+
+/* Bloc pour chaque type d'arme */
+.bloc {
+    background: #a5a8b3;
+    padding: 10px;
+    text-align: center;
+    width: 200px;
 }
-@keyframes arrow_return_bis {
-    from{
-        transform: translateX(-102px); 
-    }
-    to{
-        transform: translateX(0px); 
-    }
+
+/* Titres d'armes */
+.bloc h3 {
+    margin: 0;
+    font-size: 20px;
+    color: #333;
+}
+
+.bloc p {
+    margin: 0;
+    color: #333;
+    font-size: 25px;
+}
+
+/* Images d'armes */
+.bloc img {
+    width: 90%;
+    height: auto;
+    margin-top: 8px;
+    border-radius: 5px;
+}
+
+/* Cacher au début */
+.hidden {
+    display: none;
+}
+
+button {
+    background: #a5a8b3;
+    color: #222; /* Texte foncé pour contraster */
+    padding: 12px 20px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    width: 15%; /* Légèrement plus large */
+    border: none;
+    border-radius: 8px; /* Arrondi pour un look moderne */
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.4);
+}
+
+button:hover {
+    background: #8d91a0;
+    transform: scale(1.05);
+}
+
+button:active {
+    background: #6c6f7a;
+    transform: scale(0.98);
 }
 
 
-/*Fin des Animation*/
+/* Responsive pour mobile */
+@media (max-width: 2180px) {
+    .operator-columns {
+        gap: 15px;
+    }
+}
+@media (max-width: 2115px) {
+    .operator-columns {
+        gap: 10px;
+    }
+}
+@media screen and (max-width: 1720px) {
+    .operator {
+        min-width: 450px;
+        margin: 35px;
+    }
+
+    .operator-columns {
+        flex-direction: row; /* Conserve la ligne principale */
+        align-items: flex-start;
+    }
+
+    .colone_right {
+        margin-top: 20px;
+        margin-left: 50px;
+        display: flex;
+        flex-direction: column; /* Passe en vertical */
+        gap: 25px;
+    }
+}
+@media (max-width: 1085px) {
+    .operator {
+        min-width: 375px;
+        margin: 27.5px;
+    }
+    .colone_right {
+        margin-left: 20px;
+    }
+}
+@media (max-width: 985px) {
+    .operator {
+        min-width: 300px;
+        margin: 20px;
+    }
+
+    .operator-columns {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .colone_2, .colone_3 {
+        width: 100%;
+        align-items: center;
+    }
+
+    .bloc {
+        width: 90%;
+    }
+    h2{
+        font-size: 20px;
+    }
+}
