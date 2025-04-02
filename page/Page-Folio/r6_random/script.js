@@ -824,7 +824,7 @@ const operators = [
             { "nom": "9mm C1", "image": "image/weapon/9mm_C1.avif" }
         ],
         "armes_secondaires": [
-            { "nom": "Mk1 9mm", "image": "image/weapon/Mk1_9mm.avif" },
+            { "nom": "Mk1 9mm", "image": "image/weapon/MK1_9mm.avif" },
 			{ "nom": "ITA12S", "image": "image/weapon/ITA12S.avif" }
         ]
     },
