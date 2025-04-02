@@ -582,7 +582,7 @@ const operators = [
             { "nom": "Spear .308", "image": "image/weapon/Spear_.308.avif" }
         ],
         "armes_secondaires": [
-            { "nom": "Bearing 9", "image": "image/weapon/Bearing_9.avif" },
+            { "nom": "Bearing 9", "image": "image/weapon/BEARING_9.avif" },
             { "nom": "Q-929", "image": "image/weapon/Q-929.avif" },
 			{ "nom": "ITA12S", "image": "image/weapon/ITA12S.avif" }
         ]
@@ -668,7 +668,7 @@ const operators = [
         "image": "image/operator/r6-operators-list-mozzie.avif",
         "type": "defenseur",
         "armes_principales": [
-            { "nom": "Commando 9", "image": "image/weapon/Commando_9.avif" },
+            { "nom": "Commando 9", "image": "image/weapon/COMMANDO_9.avif" },
             { "nom": "P10 RONI", "image": "image/weapon/P10_RONI.avif" }
         ],
         "armes_secondaires": [
@@ -787,8 +787,8 @@ const operators = [
             { "nom": "SuperNova", "image": "image/weapon/SuperNova.avif" }
         ],
         "armes_secondaires": [
-            { "nom": "Bearing 9", "image": "image/weapon/Bearing_9.avif" },
-			{ "nom": "P229", "image": "image/weapon/P229.avif" }
+            { "nom": "Bearing 9", "image": "image/weapon/BEARING_9.avif" },
+	    { "nom": "P229", "image": "image/weapon/P229.avif" }
         ]
     },
 	{
@@ -945,7 +945,7 @@ const operators = [
         "armes_secondaires": [
             { "nom": "PMM", "image": "image/weapon/PMM.avif" },
             { "nom": "GSH-18", "image": "image/weapon/GSH-18.avif" },
-            { "nom": "Bearing 9", "image": "image/weapon/Bearing_9.avif" }
+            { "nom": "Bearing 9", "image": "image/weapon/BEARING_9.avif" }
         ]
     },
 	{
