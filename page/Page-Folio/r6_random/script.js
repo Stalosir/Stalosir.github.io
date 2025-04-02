@@ -263,8 +263,8 @@ const operators = [
         "type": "attaquant",
         "armes_principales": [
             { "nom": "SASG-12", "image": "image/weapon/SASG-12.avif" },
-            { "nom": "SPEAR .308", "image": "image/weapon/SPEAR_.308.avif" },
-			{ "nom": "6P41", "image": "image/weapon/6P41.avif" }
+            { "nom": "Spear .308", "image": "image/weapon/Spear_.308.avif" },
+	    { "nom": "6P41", "image": "image/weapon/6P41.avif" }
         ],
         "armes_secondaires": [
             { "nom": "PMM", "image": "image/weapon/PMM.avif" },
