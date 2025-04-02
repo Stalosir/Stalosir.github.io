@@ -698,7 +698,7 @@ const operators = [
         "armes_secondaires": [
             { "nom": "P-10C", "image": "image/weapon/P-10C.avif" },
             { "nom": "SPSMG9", "image": "image/weapon/SPSMG9.avif" },
-            { "nom": "Super Shorty", "image": "image/weapon/SUPER_SHORTY.avif" }
+            { "nom": "Super Shorty", "image": "image/weapon/SUPER_SHORTY.png" }
         ]
     },
 	{
