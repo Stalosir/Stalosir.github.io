@@ -184,7 +184,7 @@ const operators = [
         "type": "attaquant",
         "armes_principales": [
             { "nom": "TYPE-89", "image": "image/weapon/Type-89.avif" },
-            { "nom": "SUPERNOVA", "image": "image/weapon/SUPERNOVA.avif" },
+            { "nom": "SuperNova", "image": "image/weapon/SUPERNOVA.avif" },
         ],
         "armes_secondaires": [
             { "nom": "P229", "image": "image/weapon/P229.avif" },
@@ -328,7 +328,7 @@ const operators = [
         "type": "attaquant",
         "armes_principales": [
             { "nom": "G8A1", "image": "image/weapon/G8A1.avif" },
-            { "nom": "SUPERNOVA", "image": "image/weapon/SUPERNOVA.avif" }
+            { "nom": "SuperNova", "image": "image/weapon/SUPERNOVA.avif" }
         ],
         "armes_secondaires": [
             { "nom": "SMG-11", "image": "image/weapon/SMG-11.avif" },
@@ -784,7 +784,7 @@ const operators = [
         "type": "defenseur",
         "armes_principales": [
             { "nom": "MP5SD", "image": "image/weapon/MP5SD.avif" },
-            { "nom": "SuperNova", "image": "image/weapon/SuperNova.avif" }
+            { "nom": "SuperNova", "image": "image/weapon/SUPERNOVA.avif" }
         ],
         "armes_secondaires": [
             { "nom": "Bearing 9", "image": "image/weapon/BEARING_9.avif" },
