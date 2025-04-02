@@ -1042,7 +1042,8 @@ function pickOperators() {
     updateOperatorDisplay(attacker, "attacker");
     updateOperatorDisplay(defender, "defender");
 
-    document.getElementById("operatorSection").classList.remove("hidden");
+    document.getElementById("operatorATK").classList.remove("hidden");
+    document.getElementById("operatorDEF").classList.remove("hidden");
 }
 
 function pickOperatorsAttaquant() {
@@ -1056,7 +1057,7 @@ function pickOperatorsAttaquant() {
     const attacker = getRandomOperator(attackers);
     updateOperatorDisplay(attacker, "attacker");
 
-    document.getElementById("operatorSection").classList.remove("hidden");
+    document.getElementById("operatorATK").classList.remove("hidden");
 }
 
 function pickOperatorsDefenseur() {
@@ -1070,5 +1071,5 @@ function pickOperatorsDefenseur() {
     const defender = getRandomOperator(defenders);
     updateOperatorDisplay(defender, "defender");
 
-    document.getElementById("operatorSection").classList.remove("hidden");
+    document.getElementById("operatorDEF").classList.remove("hidden");
 }
