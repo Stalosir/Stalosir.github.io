@@ -478,7 +478,7 @@ const operators = [
         "image": "image/operator/r6-operators-list-skopos.avif",
         "type": "defenseur",
         "armes_principales": [
-            { "nom": "PCX-33", "image": "image/weapon/PCX-33.png" },
+            { "nom": "PCX-33", "image": "image/weapon/pcx-33.png" },
         ],
         "armes_secondaires": [
             { "nom": "P229", "image": "image/weapon/P229.avif" },
