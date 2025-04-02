@@ -233,6 +233,10 @@ button:active {
     transform: scale(0.98);
 }
 
+.button_groupe button{
+    margin: 0 55px;
+}
+
 
 /* Responsive pour mobile */
 @media (max-width: 2180px) {
@@ -262,6 +266,10 @@ button:active {
         display: flex;
         flex-direction: column; /* Passe en vertical */
         gap: 25px;
+    }
+
+    button {
+        width: 250px; /* Légèrement plus large */
     }
 }
 @media (max-width: 1085px) {
