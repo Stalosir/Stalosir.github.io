@@ -161,7 +161,7 @@ const operators = [
             { "nom": "Bouclier lourd", "image": "image/weapon/blackbeard_1.png" }
         ],
         "armes_secondaires": [
-            { "nom": "MK17 CQB", "image": "image/weapon/MK17_CQB.avif" },
+            { "nom": "MK17 CQB", "image": "image/weapon/Mk17_CQB.avif" },
             { "nom": "SR-25", "image": "image/weapon/SR-25.avif" }
         ]
     },
