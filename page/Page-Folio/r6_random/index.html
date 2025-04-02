@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rainbow Six Siege Randomizer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Random Six Siege</h1>
+    
+    <button onclick="pickOperators()">Tirer un attaquant et un défenseur</button>
+
+    <div id="operatorSection" class="hidden">
+        <div class="operator-container">
+            <!-- Attaquant -->
+            <div class="operator">
+                <div class="operator_class">
+                    <h2>Attaquant :</h2>
+                </div>
+                <div class="operator-columns">
+                    <div class="colone_1">
+                        <p id="attackerName"></p>
+                        <img id="attackerImage" src="" alt="Attaquant">
+                    </div>
+                    <div class="colone_2">
+                        <div class="bloc">
+                            <h3>Arme principale</h3>
+                            <img id="attackerPrimaryImage" src="" class="hidden" alt="Arme principale">
+                            <p id="attackerPrimaryName"></p>
+                        </div>
+                    </div>
+                    <div class="colone_3">
+                        <div class="bloc">
+                            <h3>Arme secondaire</h3>
+                            <img id="attackerSecondaryImage" src="" class="hidden" alt="Arme secondaire">
+                            <p id="attackerSecondaryName"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+
+            <!-- Défenseur -->
+            <div class="operator">
+                <div class="operator_class">
+                    <h2>Défenseur :</h2>
+                </div>
+                <div class="operator-columns">
+                    <div class="colone_1">
+                        <p id="defenderName"></p>
+                        <img id="defenderImage" src="" alt="Défenseur">
+                    </div>
+                    <div class="colone_2">
+                        <div class="bloc">
+                            <h3>Arme principale</h3>
+                            <img id="defenderPrimaryImage" src="" class="hidden" alt="Arme principale">
+                            <p id="defenderPrimaryName"></p>
+                        </div>
+                    </div>
+                    <div class="colone_3">
+                        <div class="bloc">
+                            <h3>Arme secondaire</h3>
+                            <img id="defenderSecondaryImage" src="" class="hidden" alt="Arme secondaire">
+                            <p id="defenderSecondaryName"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <script src="script.js"></script>
+</body>
+</html>

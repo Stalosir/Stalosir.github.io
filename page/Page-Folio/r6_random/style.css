@@ -1,0 +1,248 @@
+
+@font-face {
+    font-family: "Rainbow"; /* Nom personnalisé */
+    src: url("font/Rainbow.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    background-image: url(image/Background.jpg);
+    text-align: center;
+    margin: 20px;
+    font-size: 50px;
+}
+
+h1 {
+    color: #fff;
+    font-family: "Rainbow", sans-serif;
+}
+h2 {
+    color: #fff;
+    font-family: "Arial", sans-serif;
+    font-size: 30px;
+}
+h3 {
+    color: #fff;
+    font-family: "Arial", sans-serif;
+    font-size: 20px;
+}
+p {
+    color: #fff;
+    font-family: "Arial", sans-serif;
+    font-size: 25px;
+}
+
+/* Conteneur principal */
+.checkbox-container {
+    cursor: pointer;
+    user-select: none;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+
+}
+
+/* Masquer la checkbox par défaut */
+.checkbox-container input {
+    display: none;
+}
+
+/* Apparence de la boîte personnalisée */
+.checkbox-custom {
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    background-color: #ddd;
+    color: #333;
+    font-weight: bold;
+    transition: background 0.3s, color 0.3s;
+    text-transform: uppercase;
+}
+
+/* Effet quand la checkbox est cochée */
+.checkbox-container input:checked + .checkbox-custom {
+    background-color: #868686;
+    color: white;
+}
+
+#operatorSection {
+    margin: 0 auto; /* Centre horizontalement */
+    width: 40%; /* Définit une largeur */
+}
+
+.operator-container {
+    width: 100%; /* Assurez-vous qu'il prend toute la largeur disponible */
+    display: flex;
+    flex-direction: row; /* Permet d'aligner les enfants en colonne */
+    align-items: center; /* Centre les enfants horizontalement */
+    justify-content: center; /* Centre verticalement si nécessaire */
+}
+
+
+.buttons button {
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}
+
+#result {
+    margin-top: 20px;
+}
+
+#result img {
+    max-width: 180px;
+    display: block;
+    margin: 10px auto;
+}
+#defenderImage{
+    border: 2px solid #aaaaaa;
+    background-color: #1f1f1f;
+    padding: 10px;
+}
+#attackerImage{
+    border: 2px solid #aaaaaa;
+    background-color: #1f1f1f;
+    padding: 10px;
+}
+
+.operator {
+    display: flex;
+    flex-direction: column; /* Met le titre au-dessus */
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #aaaaaa;
+    padding: 20px;
+    width: 70%;
+    height: auto;
+    color: white;
+    border-radius: 10px;
+    background-color: rgba(83, 83, 83, 0.26);
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+    margin: 50px;
+}
+
+/* Titre du rôle (Attaquant / Défenseur) */
+.operator_class {
+    width: 100%; /* Pour qu'il prenne toute la largeur */
+    text-align: center;
+    padding-bottom: 10px;
+    font-size: 20px;
+    text-transform: uppercase;
+    border-bottom: 2px solid white;
+}
+
+/* Conteneur des colonnes */
+.operator-columns {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+}
+
+/* Colonne 1 : Image + Nom */
+.colone_1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.colone_1 img {
+    width: 120px;
+    height: auto;
+    border-radius: 10px;
+    margin-top: 10px;
+    border: 2px solid white;
+}
+
+/* Colonnes des armes */
+.colone_2, .colone_3 {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Bloc pour chaque type d'arme */
+.bloc {
+    background: #a5a8b3;
+    padding: 10px;
+    text-align: center;
+    width: 200px;
+}
+
+/* Titres d'armes */
+.bloc h3 {
+    margin: 0;
+    font-size: 20px;
+    color: #333;
+}
+.bloc p {
+    margin: 0;
+    color: #333;
+    font-size: 25px;
+}
+
+/* Images d'armes */
+.bloc img {
+    width: 90%;
+    height: auto;
+    margin-top: 8px;
+    border-radius: 5px;
+}
+
+/* Cacher au début */
+.hidden {
+    display: none;
+}
+
+button {
+    background: #a5a8b3;
+    color: #222; /* Texte foncé pour contraster */
+    padding: 12px 20px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    width: 15%; /* Légèrement plus large */
+    border: none;
+    border-radius: 8px; /* Arrondi pour un look moderne */
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.4);
+}
+
+button:hover {
+    background: #8d91a0;
+    transform: scale(1.05);
+}
+
+button:active {
+    background: #6c6f7a;
+    transform: scale(0.98);
+}
+
+
+/* Responsive pour mobile */
+@media (max-width: 700px) {
+    .operator {
+        width: 90%;
+    }
+
+    .operator-columns {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .colone_2, .colone_3 {
+        width: 100%;
+        align-items: center;
+    }
+
+    .bloc {
+        width: 90%;
+    }
+}
