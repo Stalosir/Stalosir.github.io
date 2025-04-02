@@ -10,7 +10,13 @@
 <body>
     <h1>Random Six Siege</h1>
     
-    <button onclick="pickOperators()">Tirer un attaquant et un défenseur</button>
+    <div>
+        <button onclick="pickOperators()">Tirer un attaquant et un défenseur</button>
+        <div class="button_groupe">
+            <button onclick="pickOperatorsAttaquant()">Tirer un attaquant</button>
+            <button onclick="pickOperatorsDefenseur()">Tirer un défenseur</button>
+        </div>
+    </div> 
 
     <div id="operatorSection" class="hidden">
         <div class="operator-container">
