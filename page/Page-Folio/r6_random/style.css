@@ -117,7 +117,7 @@ p {
     align-items: center;
     border: 2px solid #aaaaaa;
     padding: 20px;
-    width: 70%;
+    width: 90%;
     height: auto;
     color: white;
     border-radius: 10px;
@@ -161,6 +161,13 @@ p {
     border: 2px solid white;
 }
 
+/* Conteneur regroupant colone_2 et colone_3 */
+.colone_right {
+    display: flex;
+    flex-direction: row; /* Par défaut, en ligne */
+    gap: 10px;
+}
+
 /* Colonnes des armes */
 .colone_2, .colone_3 {
     display: flex;
@@ -181,6 +188,7 @@ p {
     font-size: 20px;
     color: #333;
 }
+
 .bloc p {
     margin: 0;
     color: #333;
@@ -227,9 +235,48 @@ button:active {
 
 
 /* Responsive pour mobile */
-@media (max-width: 700px) {
+@media (max-width: 2180px) {
+    .operator-columns {
+        gap: 15px;
+    }
+}
+@media (max-width: 2115px) {
+    .operator-columns {
+        gap: 10px;
+    }
+}
+@media screen and (max-width: 1720px) {
     .operator {
-        width: 90%;
+        min-width: 450px;
+        margin: 35px;
+    }
+
+    .operator-columns {
+        flex-direction: row; /* Conserve la ligne principale */
+        align-items: flex-start;
+    }
+
+    .colone_right {
+        margin-top: 20px;
+        margin-left: 50px;
+        display: flex;
+        flex-direction: column; /* Passe en vertical */
+        gap: 25px;
+    }
+}
+@media (max-width: 1085px) {
+    .operator {
+        min-width: 375px;
+        margin: 27.5px;
+    }
+    .colone_right {
+        margin-left: 20px;
+    }
+}
+@media (max-width: 985px) {
+    .operator {
+        min-width: 300px;
+        margin: 20px;
     }
 
     .operator-columns {
@@ -244,5 +291,8 @@ button:active {
 
     .bloc {
         width: 90%;
+    }
+    h2{
+        font-size: 20px;
     }
 }
