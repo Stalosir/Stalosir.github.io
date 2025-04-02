@@ -987,8 +987,47 @@ function getRandomOperator(list) {
     return pickedOperator;
 }
 
+function pickWeapons(operator) {
+    let primaryWeapons = operator.armes_principales?.filter(w => w.nom) || [];
+    let secondaryWeapons = operator.armes_secondaires?.filter(w => w.nom) || [];
+
+    let chosenPrimary = primaryWeapons.length > 0 ? primaryWeapons[Math.floor(Math.random() * primaryWeapons.length)] : null;
+    let chosenSecondary = secondaryWeapons.length > 0 ? secondaryWeapons[Math.floor(Math.random() * secondaryWeapons.length)] : null;
+
+    return { chosenPrimary, chosenSecondary };
+}
+
+function updateOperatorDisplay(operator, type) {
+    document.getElementById(type + "Name").textContent = operator.nom;
+    document.getElementById(type + "Image").src = operator.image;
+
+    const weapons = pickWeapons(operator);
+
+    let primaryName = document.getElementById(type + "PrimaryName");
+    let primaryImage = document.getElementById(type + "PrimaryImage");
+    let secondaryName = document.getElementById(type + "SecondaryName");
+    let secondaryImage = document.getElementById(type + "SecondaryImage");
+
+    if (weapons.chosenPrimary) {
+        primaryName.textContent = weapons.chosenPrimary.nom;
+        primaryImage.src = weapons.chosenPrimary.image;
+        primaryImage.classList.remove("hidden");
+    } else {
+        primaryName.textContent = "Aucune arme principale disponible";
+        primaryImage.classList.add("hidden");
+    }
+
+    if (weapons.chosenSecondary) {
+        secondaryName.textContent = weapons.chosenSecondary.nom;
+        secondaryImage.src = weapons.chosenSecondary.image;
+        secondaryImage.classList.remove("hidden");
+    } else {
+        secondaryName.textContent = "Aucune arme secondaire disponible";
+        secondaryImage.classList.add("hidden");
+    }
+}
+
 function pickOperators() {
-    // Filtrer les attaquants et défenseurs
     const attackers = operators.filter(op => op.type === "attaquant");
     const defenders = operators.filter(op => op.type === "defenseur");
 
@@ -997,62 +1036,39 @@ function pickOperators() {
         return;
     }
 
-    // Tirer un attaquant et un défenseur
     const attacker = getRandomOperator(attackers);
     const defender = getRandomOperator(defenders);
 
-    // Fonction pour choisir une arme (1 principale, 1 secondaire)
-    function pickWeapons(operator) {
-        let primaryWeapons = operator.armes_principales?.filter(w => w.nom) || [];
-        let secondaryWeapons = operator.armes_secondaires?.filter(w => w.nom) || [];
+    updateOperatorDisplay(attacker, "attacker");
+    updateOperatorDisplay(defender, "defender");
 
-        let chosenPrimary = primaryWeapons.length > 0 ? primaryWeapons[Math.floor(Math.random() * primaryWeapons.length)] : null;
-        let chosenSecondary = secondaryWeapons.length > 0 ? secondaryWeapons[Math.floor(Math.random() * secondaryWeapons.length)] : null;
-
-        return { chosenPrimary, chosenSecondary };
-    }
-
-    // Tirage des armes
-    const attackerWeapons = pickWeapons(attacker);
-    const defenderWeapons = pickWeapons(defender);
-
-    // Mettre à jour l'affichage des opérateurs
-    document.getElementById("attackerName").textContent = attacker.nom;
-    document.getElementById("attackerImage").src = attacker.image;
-
-    document.getElementById("defenderName").textContent = defender.nom;
-    document.getElementById("defenderImage").src = defender.image;
-
-    // Mettre à jour l'affichage des armes
-    function updateWeaponDisplay(operatorType, weapons) {
-        let primaryName = document.getElementById(operatorType + "PrimaryName");
-        let primaryImage = document.getElementById(operatorType + "PrimaryImage");
-        let secondaryName = document.getElementById(operatorType + "SecondaryName");
-        let secondaryImage = document.getElementById(operatorType + "SecondaryImage");
-
-        if (weapons.chosenPrimary) {
-            primaryName.textContent = weapons.chosenPrimary.nom;
-            primaryImage.src = weapons.chosenPrimary.image;
-            primaryImage.classList.remove("hidden");
-        } else {
-            primaryName.textContent = "Aucune arme principale disponible";
-            primaryImage.classList.add("hidden");
-        }
-
-        if (weapons.chosenSecondary) {
-            secondaryName.textContent = weapons.chosenSecondary.nom;
-            secondaryImage.src = weapons.chosenSecondary.image;
-            secondaryImage.classList.remove("hidden");
-        } else {
-            secondaryName.textContent = "Aucune arme secondaire disponible";
-            secondaryImage.classList.add("hidden");
-        }
-    }
-
-    updateWeaponDisplay("attacker", attackerWeapons);
-    updateWeaponDisplay("defender", defenderWeapons);
-
-    // Afficher la section des opérateurs
     document.getElementById("operatorSection").classList.remove("hidden");
 }
 
+function pickOperatorsAttaquant() {
+    const attackers = operators.filter(op => op.type === "attaquant");
+
+    if (attackers.length === 0) {
+        console.error("Il manque des attaquants !");
+        return;
+    }
+
+    const attacker = getRandomOperator(attackers);
+    updateOperatorDisplay(attacker, "attacker");
+
+    document.getElementById("operatorSection").classList.remove("hidden");
+}
+
+function pickOperatorsDefenseur() {
+    const defenders = operators.filter(op => op.type === "defenseur");
+
+    if (defenders.length === 0) {
+        console.error("Il manque des défenseurs !");
+        return;
+    }
+
+    const defender = getRandomOperator(defenders);
+    updateOperatorDisplay(defender, "defender");
+
+    document.getElementById("operatorSection").classList.remove("hidden");
+}
