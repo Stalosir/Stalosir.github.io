@@ -1,0 +1,1264 @@
+<!DOCTYPE html>
+<html lang="fr" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suivi de Cagnotte - Ryoma Kurosan ⚔️</title>
+    <!-- Tailwind CSS for modern utility-first styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js for beautiful, responsive charts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- FontAwesome for high-quality developer icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Google Fonts - Inter for premium readability -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        wood: {
+                            50: '#fdf8f5',
+                            100: '#fbeee6',
+                            200: '#f5dcd0',
+                            300: '#ecbeaa',
+                            400: '#df947a',
+                            500: '#d06e53',
+                            600: '#c1533b',
+                            700: '#a1412e',
+                            800: '#823629',
+                            900: '#692f25',
+                            950: '#391612',
+                        },
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Custom scrollbar to match dark aesthetic */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #334155;
+        }
+        
+        /* Premium custom transition for the table accordion sliding */
+        @keyframes slideDownCascade {
+            0% {
+                opacity: 0;
+                transform: translateY(-16px);
+                background-color: rgba(245, 158, 11, 0.08); /* Gold highlight on pop */
+            }
+            50% {
+                background-color: rgba(245, 158, 11, 0.03);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+                background-color: transparent;
+            }
+        }
+        .animate-subrow {
+            animation: slideDownCascade 0.35s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+
+        /* Cinematic scale and blur transition for charts swapping */
+        @keyframes chartTransition {
+            0% {
+                opacity: 0;
+                transform: scale(0.985) translateY(4px);
+                filter: blur(2px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+                filter: blur(0);
+            }
+        }
+        .animate-chart-transition {
+            animation: chartTransition 0.45s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen font-sans flex flex-col justify-between selection:bg-amber-500/30 selection:text-amber-200">
+
+    <!-- MAIN CONTAINER -->
+    <main class="max-w-7xl w-full mx-auto p-4 md:p-8 space-y-6">
+        
+        <!-- HEADER CARD -->
+        <header class="relative overflow-hidden bg-slate-900 border border-slate-800 rounded-2xl p-6 md:p-8 flex flex-col md:flex-row md:items-center justify-between gap-6 shadow-2xl">
+            <!-- Background glow decoration -->
+            <div class="absolute -top-24 -right-24 w-96 h-96 bg-wood-500/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-wood-500/5 rounded-full blur-3xl pointer-events-none"></div>
+            
+            <div class="space-y-2 z-10">
+                <div class="flex items-center gap-3">
+                    <span class="bg-amber-500/10 text-amber-500 p-2.5 rounded-xl border border-amber-500/20 shadow-lg shadow-amber-500/5">
+                        <i class="fa-solid fa-shuttle-space text-2xl rotate-45"></i>
+                    </span>
+                    <h1 class="text-2xl md:text-3xl font-extrabold tracking-tight bg-gradient-to-r from-amber-200 via-amber-400 to-amber-100 bg-clip-text text-transparent">
+                        Projet Ryoma Kurosan
+                    </h1>
+                </div>
+                <p class="text-slate-400 max-w-xl text-sm md:text-base">
+                    Suivi analytique multi-dépôts CurseForge de ma cagnotte pour le duo de couteaux japonais d'exception de mon meilleur pote.
+                </p>
+            </div>
+            
+            <!-- Quick status badge -->
+            <div class="z-10 bg-slate-950/60 backdrop-blur border border-slate-800 rounded-xl p-4 flex items-center gap-4">
+                <div class="text-right">
+                    <span class="text-xs text-slate-500 uppercase tracking-wider font-semibold block">Dernier relevé</span>
+                    <span class="text-sm font-medium text-slate-300" id="header-latest-date">Juin 2026</span>
+                </div>
+                <div class="h-8 w-px bg-slate-800"></div>
+                <div class="text-right">
+                    <span class="text-xs text-slate-500 uppercase tracking-wider font-semibold block">Cible d'achat</span>
+                    <span class="text-sm font-semibold text-amber-500">Mai 2027</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- STATS CARDS GRID -->
+        <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            
+            <!-- Card 1: Current Balance -->
+            <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-lg relative overflow-hidden group hover:border-slate-700 transition duration-300">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-sm text-slate-400 font-medium">Solde Réel Actuel</span>
+                    <span class="text-slate-500 group-hover:text-amber-500 transition duration-300"><i class="fa-solid fa-wallet"></i></span>
+                </div>
+                <div class="space-y-1">
+                    <h3 class="text-3xl font-bold tracking-tight text-white" id="stat-current-euro">58,75 €</h3>
+                    <p class="text-xs text-slate-400" id="stat-current-points">1 340 points CurseForge</p>
+                </div>
+            </div>
+
+            <!-- Card 2: Performance Comparison -->
+            <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-lg relative overflow-hidden group hover:border-slate-700 transition duration-300">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-sm text-slate-400 font-medium">Variation vs Prévu</span>
+                    <span class="text-slate-500 group-hover:text-amber-500 transition duration-300"><i class="fa-solid fa-chart-line"></i></span>
+                </div>
+                <div class="space-y-1">
+                    <div class="flex items-baseline gap-2">
+                        <h3 class="text-3xl font-bold tracking-tight text-emerald-400" id="stat-variation-value">+3,75 €</h3>
+                        <span class="text-sm font-semibold text-emerald-400" id="stat-variation-percent">(+6.81%)</span>
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                        <span class="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" id="stat-status-dot"></span>
+                        <p class="text-xs text-slate-400" id="stat-status-label">Tendance : Positive 🟢</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3: Final Projection -->
+            <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-lg relative overflow-hidden group hover:border-slate-700 transition duration-300">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-sm text-slate-400 font-medium">Atterrissage Estimé</span>
+                    <span class="text-slate-500 group-hover:text-amber-500 transition duration-300"><i class="fa-solid fa-wand-magic-sparkles"></i></span>
+                </div>
+                <div class="space-y-1">
+                    <h3 class="text-3xl font-bold tracking-tight text-slate-100" id="stat-projection-value">~216,40 €</h3>
+                    <p class="text-xs text-slate-400" id="stat-projection-points">~5 470 points attendus</p>
+                </div>
+            </div>
+
+            <!-- Card 4: Goal Status -->
+            <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-lg relative overflow-hidden group hover:border-slate-700 transition duration-300">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-sm text-slate-400 font-medium">Objectif Couteaux</span>
+                    <span class="text-slate-500 group-hover:text-amber-500 transition duration-300"><i class="fa-solid fa-bullseye"></i></span>
+                </div>
+                <div class="space-y-1">
+                    <h3 class="text-3xl font-bold tracking-tight text-amber-500">215,00 €</h3>
+                    <div class="flex items-center gap-2 mt-1">
+                        <span class="text-xs px-2.5 py-0.5 rounded-full font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20" id="stat-goal-badge">
+                            Financé à 100% ⚔️
+                        </span>
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+
+        <!-- GRAPH & CONTROL SECTION -->
+        <section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            
+            <!-- Chart Container -->
+            <div class="lg:col-span-2 bg-slate-900 border border-slate-800 rounded-2xl p-4 md:p-6 shadow-xl space-y-4 relative">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div class="space-y-1">
+                        <div class="flex items-center gap-2">
+                            <button id="btn-back-zoom" onclick="resetZoom()" class="hidden bg-slate-800 hover:bg-slate-700 border border-slate-700 text-amber-400 text-xs font-semibold px-2.5 py-1 rounded-lg transition items-center gap-1.5 active:scale-95">
+                                <i class="fa-solid fa-arrow-left"></i> Zoom Annuel
+                            </button>
+                            <h2 id="chart-title" class="text-lg font-bold text-slate-200">Trajectoire de Financement</h2>
+                        </div>
+                        <p id="chart-subtitle" class="text-xs text-slate-400">Clique sur un point réel pour voir le zoom quotidien du mois !</p>
+                    </div>
+                    <!-- Legend Badges -->
+                    <div class="flex flex-wrap items-center gap-3 text-xs" id="chart-legend-container">
+                        <span class="flex items-center gap-1.5 text-slate-400">
+                            <span class="h-2 w-3 bg-amber-500 rounded-full inline-block"></span> Objectif (215€)
+                        </span>
+                        <span class="flex items-center gap-1.5 text-slate-400">
+                            <span class="h-2 w-3 bg-blue-500/50 rounded-full inline-block"></span> Prévu initial
+                        </span>
+                        <span class="flex items-center gap-1.5 text-slate-400">
+                            <span class="h-2 w-3 bg-emerald-500 rounded-full inline-block"></span> Réel & Projection
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="relative w-full h-[320px] md:h-[400px] overflow-hidden rounded-xl">
+                    <canvas id="trackerChart"></canvas>
+                </div>
+            </div>
+
+            <!-- DATA INPUTS & SETTINGS PANEL -->
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl flex flex-col justify-between gap-6">
+                <div class="space-y-4">
+                    <div class="space-y-1">
+                        <h2 class="text-lg font-bold text-slate-200">Enregistrer un Relevé</h2>
+                        <p class="text-xs text-slate-400">Saisis tes points et ta cagnotte. Les dates différentes s'ajouteront comme de nouveaux dépôts !</p>
+                    </div>
+
+                    <!-- Custom Form -->
+                    <div class="space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label for="select-month" class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5">Choisir le mois</label>
+                                <select id="select-month" class="w-full bg-slate-950 border border-slate-800 focus:border-amber-500 focus:ring-1 focus:ring-amber-500 rounded-xl px-3 py-2 text-slate-200 font-medium transition duration-200 text-sm">
+                                    <option value="May 2026">Mai 2026</option>
+                                    <option value="June 2026" selected>Juin 2026</option>
+                                    <option value="July 2026">Juillet 2026</option>
+                                    <option value="August 2026">Août 2026</option>
+                                    <option value="September 2026">Septembre 2026</option>
+                                    <option value="October 2026">Octobre 2026</option>
+                                    <option value="November 2026">Novembre 2026</option>
+                                    <option value="December 2026">Décembre 2026</option>
+                                    <option value="January 2027">Janvier 2027</option>
+                                    <option value="February 2027">Février 2027</option>
+                                    <option value="March 2027">Mars 2027</option>
+                                    <option value="April 2027">Avril 2027</option>
+                                    <option value="May 2027">Mai 2027</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="input-date" class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5">Date exacte du relevé</label>
+                                <input type="date" id="input-date" class="w-full bg-slate-950 border border-slate-800 focus:border-amber-500 focus:ring-1 focus:ring-amber-500 rounded-xl px-3 py-2 text-slate-200 font-medium transition duration-200 text-sm">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label for="input-points" class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5">Points</label>
+                                <div class="relative">
+                                    <input type="number" id="input-points" class="w-full bg-slate-950 border border-slate-800 focus:border-amber-500 focus:ring-1 focus:ring-amber-500 rounded-xl px-3 py-2 text-slate-200 font-medium transition duration-200 placeholder:text-slate-600 text-sm" placeholder="1340">
+                                </div>
+                            </div>
+                            <div>
+                                <label for="input-euros" class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5">Cagnotte (€)</label>
+                                <div class="relative">
+                                    <input type="number" step="0.01" id="input-euros" class="w-full bg-slate-950 border border-slate-800 focus:border-amber-500 focus:ring-1 focus:ring-amber-500 rounded-xl px-3 py-2 text-slate-200 font-medium transition duration-200 placeholder:text-slate-600 text-sm" placeholder="58.75">
+                                </div>
+                            </div>
+                        </div>
+
+                        <button onclick="saveMonthlyData()" class="w-full bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-500 hover:to-amber-600 active:scale-[0.98] text-white font-semibold py-2.5 px-4 rounded-xl transition duration-200 shadow-lg shadow-amber-900/20 flex items-center justify-center gap-2 text-sm">
+                            <i class="fa-solid fa-floppy-disk"></i> Enregistrer le relevé
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Action section (Presets & Export) -->
+                <div class="border-t border-slate-800 pt-4 space-y-2">
+                    <button onclick="resetToDiscussionPreset()" class="w-full bg-slate-950/60 hover:bg-slate-950 border border-slate-800 hover:border-slate-700 text-slate-400 hover:text-slate-200 py-2 px-4 rounded-xl transition duration-200 text-xs font-medium flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-arrow-rotate-left"></i> Rétablir les données de la discussion
+                    </button>
+                    
+                    <div class="flex items-center gap-2">
+                        <button onclick="exportData()" class="w-1/2 bg-slate-950/60 hover:bg-slate-950 border border-slate-800 text-slate-400 hover:text-slate-200 py-2 px-3 rounded-lg transition duration-200 text-xs flex items-center justify-center gap-1.5" title="Exporter les données brutes (JSON)">
+                            <i class="fa-solid fa-file-export"></i> Exp. JSON
+                        </button>
+                        <button onclick="triggerImport()" class="w-1/2 bg-slate-950/60 hover:bg-slate-950 border border-slate-800 text-slate-400 hover:text-slate-200 py-2 px-3 rounded-lg transition duration-200 text-xs flex items-center justify-center gap-1.5">
+                            <i class="fa-solid fa-file-import"></i> Imp. JSON
+                        </button>
+                        <input type="file" id="import-file" class="hidden" accept=".json" onchange="importData(event)">
+                    </div>
+
+                    <button onclick="exportChatReport()" class="w-full bg-slate-950/80 hover:bg-slate-950 border border-amber-500/20 hover:border-amber-500/40 text-amber-400 hover:text-amber-300 py-2.5 px-4 rounded-xl transition duration-200 text-xs font-bold flex items-center justify-center gap-2" title="Générer un fichier texte structuré pour me le transmettre dans le chat">
+                        <i class="fa-solid fa-file-waveform"></i> Exporter Rapport Chat (.txt)
+                    </button>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- MONTHLY HISTORY DATA LIST -->
+        <section class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
+            <div class="flex items-center justify-between">
+                <div class="space-y-1">
+                    <h2 class="text-lg font-bold text-slate-200">Dépôts réels & Projections mensuelles</h2>
+                    <p class="text-xs text-slate-400">Clique sur les flèches <i class="fa-solid fa-caret-right text-slate-500"></i> pour déplier tous tes dépôts intermédiaires de chaque mois !</p>
+                </div>
+            </div>
+
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="border-b border-slate-800 text-slate-400 text-xs font-semibold uppercase tracking-wider">
+                            <th class="py-3 px-4 w-12"></th> <!-- Accordion Toggle spacer -->
+                            <th class="py-3 px-4">Mois / Date de Relevé</th>
+                            <th class="py-3 px-4">Type d'Entrée</th>
+                            <th class="py-3 px-4">Points</th>
+                            <th class="py-3 px-4">Cagnotte (€)</th>
+                            <th class="py-3 px-4">Cible Théorique (€)</th>
+                            <th class="py-3 px-4">Statut vs Prévu</th>
+                            <th class="py-3 px-4 text-center w-16">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body" class="text-sm divide-y divide-slate-800/50">
+                        <!-- Filled dynamically by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ALERTS/TOAST NOTIFICATION CONTAINER -->
+    <div id="toast-container" class="fixed bottom-5 right-5 z-50 space-y-2 pointer-events-none"></div>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-slate-900 bg-slate-950/60 py-6 mt-12 text-center text-xs text-slate-500 space-y-2">
+        <p>Un ami d'exception mérite un outil et un cadeau d'exception.</p>
+        <p>Développé avec ❤️ pour ton projet de cadeau de cuisine. ⚔️ 🌲</p>
+    </footer>
+
+    <!-- APP LOGIC (SINGLE-FILE INTERACTIVE COMPONENT) -->
+    <script>
+        const MONTH_NAMES_EN = [
+            "May 2026", "June 2026", "July 2026", "August 2026", "September 2026", 
+            "October 2026", "November 2026", "December 2026", "January 2027", 
+            "February 2027", "March 2027", "April 2027", "May 2027"
+        ];
+
+        const MONTHS_MAP_FR = {
+            "May": "Mai", "June": "Juin", "July": "Juillet", "August": "Août",
+            "September": "Septembre", "October": "Octobre", "November": "Novembre",
+            "December": "Décembre", "January": "Janvier", "February": "Février",
+            "March": "Mars", "April": "Avril"
+        };
+
+        const MONTHS_NUM_MAP = {
+            "May": 5, "June": 6, "July": 7, "August": 8, "September": 9, "October": 10,
+            "November": 11, "December": 12, "January": 1, "February": 2, "March": 3, "April": 4
+        };
+
+        const INITIAL_FORECAST = [
+            { month: "May 2026", points: 926, euros: 39.70 },
+            { month: "June 2026", points: 1369, euros: 55.00 },
+            { month: "July 2026", points: 1797, euros: 72.00 },
+            { month: "August 2026", points: 2210, euros: 88.00 },
+            { month: "September 2026", points: 2608, euros: 104.00 },
+            { month: "October 2026", points: 2991, euros: 120.00 },
+            { month: "November 2026", points: 3359, euros: 134.00 },
+            { month: "December 2026", points: 3712, euros: 148.00 },
+            { month: "January 2027", points: 4050, euros: 162.00 },
+            { month: "February 2027", points: 4373, euros: 175.00 },
+            { month: "March 2027", points: 4681, euros: 187.00 },
+            { month: "April 2027", points: 4974, euros: 199.00 },
+            { month: "May 2027", points: 5252, euros: 210.00 }
+        ];
+
+        const TARGET_ENDPOINTS = {
+            "2026-04": { points: 600, euros: 25.00 }, 
+            "2026-05": { points: 926, euros: 39.70 },
+            "2026-06": { points: 1369, euros: 55.00 },
+            "2026-07": { points: 1797, euros: 72.00 },
+            "2026-08": { points: 2210, euros: 88.00 },
+            "2026-09": { points: 2608, euros: 104.00 },
+            "2026-10": { points: 2991, euros: 120.00 },
+            "2026-11": { points: 3359, euros: 134.00 },
+            "2026-12": { points: 3712, euros: 148.00 },
+            "2027-01": { points: 4050, euros: 162.00 },
+            "2027-02": { points: 4373, euros: 175.00 },
+            "2027-03": { points: 4681, euros: 187.00 },
+            "2027-04": { points: 4974, euros: 199.00 },
+            "2027-05": { points: 5252, euros: 210.00 }
+        };
+
+        const DEFAULT_ACTUALS = {
+            "May 2026": [
+                { points: 926, euros: 39.70, date: "2026-05-12" }
+            ],
+            "June 2026": [
+                { points: 1129, euros: 49.50, date: "2026-06-12" }, 
+                { points: 1340, euros: 58.75, date: "2026-06-26" }  
+            ]
+        };
+
+        const TARGET_EUROS = 215.00;
+        
+        let userActuals = {};
+        let unfoldedMonths = {}; 
+        let activeZoomMonth = null; 
+        let trackerChart = null;
+
+        // Calculate theoretical linear targets for any precise day of the year
+        function getDailyTargets(dateStr) {
+            if (!dateStr) return { points: 0, euros: 0 };
+            const [year, month, day] = dateStr.split('-').map(Number);
+            const currentMonthKey = `${year}-${String(month).padStart(2, '0')}`;
+            
+            let prevYear = year;
+            let prevMonth = month - 1;
+            if (prevMonth === 0) {
+                prevMonth = 12;
+                prevYear -= 1;
+            }
+            const prevMonthKey = `${prevYear}-${String(prevMonth).padStart(2, '0')}`;
+            
+            const currentTargets = TARGET_ENDPOINTS[currentMonthKey];
+            const prevTargets = TARGET_ENDPOINTS[prevMonthKey] || { points: 600, euros: 25.00 };
+            
+            if (!currentTargets) return { points: 0, euros: 0 };
+            
+            const daysInMonth = new Date(year, month, 0).getDate();
+            const ratio = day / daysInMonth;
+            
+            const interpolatedEuros = prevTargets.euros + (currentTargets.euros - prevTargets.euros) * ratio;
+            const interpolatedPoints = prevTargets.points + (currentTargets.points - prevTargets.points) * ratio;
+            
+            return {
+                points: Math.round(interpolatedPoints),
+                euros: parseFloat(interpolatedEuros.toFixed(2))
+            };
+        }
+
+        // Custom Toast feedback
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = `flex items-center gap-3 bg-slate-900 border ${type === 'success' ? 'border-emerald-500/30 text-emerald-400' : (type === 'warning' ? 'border-amber-500/30 text-amber-400' : 'border-blue-500/30 text-blue-400')} px-5 py-3 rounded-xl shadow-2xl pointer-events-auto transition-all duration-300 translate-y-2 opacity-0 text-sm font-semibold`;
+            
+            const icon = type === 'success' ? 'fa-circle-check' : (type === 'warning' ? 'fa-triangle-exclamation' : 'fa-info-circle');
+            toast.innerHTML = `<i class="fa-solid ${icon}"></i> <span>${message}</span>`;
+            
+            container.appendChild(toast);
+            setTimeout(() => toast.classList.remove('translate-y-2', 'opacity-0'), 10);
+            setTimeout(() => {
+                toast.classList.add('translate-y-2', 'opacity-0');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        function translateMonthToFr(monthEn) {
+            const [m, y] = monthEn.split(' ');
+            return `${MONTHS_MAP_FR[m] || m} ${y}`;
+        }
+
+        function getLatestRecordForMonth(monthName) {
+            const records = userActuals[monthName];
+            if (!records || records.length === 0) return null;
+            return records[records.length - 1];
+        }
+
+        function computeFullDatasets() {
+            let processed = [];
+            let lastKnownActualIndex = -1;
+
+            MONTH_NAMES_EN.forEach((itemMonth, index) => {
+                const latestRec = getLatestRecordForMonth(itemMonth);
+                if (latestRec) {
+                    lastKnownActualIndex = index;
+                }
+            });
+
+            let prevActualPoints = 0;
+            let prevActualMonthGain = 414; 
+
+            MONTH_NAMES_EN.forEach((itemMonth, index) => {
+                let isActual = false;
+                let currentPoints = 0;
+                let currentEuros = 0;
+                const latestRec = getLatestRecordForMonth(itemMonth);
+
+                if (index <= lastKnownActualIndex) {
+                    if (latestRec) {
+                        isActual = true;
+                        currentPoints = latestRec.points;
+                        currentEuros = latestRec.euros;
+
+                        const prevMonthLatest = index > 0 ? getLatestRecordForMonth(MONTH_NAMES_EN[index - 1]) : null;
+                        if (index > 0 && prevMonthLatest) {
+                            prevActualMonthGain = currentPoints - prevMonthLatest.points;
+                        }
+                        prevActualPoints = currentPoints;
+                    } else {
+                        isActual = false;
+                        const initialForecast = INITIAL_FORECAST[index];
+                        currentPoints = initialForecast.points;
+                        currentEuros = initialForecast.euros;
+                        prevActualPoints = currentPoints;
+                    }
+                } else {
+                    let estimatedGain = Math.max(0, prevActualMonthGain - 15);
+                    currentPoints = prevActualPoints + estimatedGain;
+                    
+                    const lastActualMonthName = MONTH_NAMES_EN[lastKnownActualIndex];
+                    const lastActual = getLatestRecordForMonth(lastActualMonthName);
+                    let conversionRate = lastActual ? (lastActual.euros / lastActual.points) : (39.70 / 926);
+                    currentEuros = currentPoints * conversionRate;
+
+                    prevActualPoints = currentPoints;
+                    prevActualMonthGain = estimatedGain;
+                }
+
+                const initialForecastItem = INITIAL_FORECAST[index];
+                processed.push({
+                    month: itemMonth,
+                    isActual: isActual,
+                    points: Math.round(currentPoints),
+                    euros: parseFloat(currentEuros.toFixed(2)),
+                    forecastPoints: initialForecastItem.points,
+                    forecastEuros: initialForecastItem.euros
+                });
+            });
+
+            return { processed, lastKnownActualIndex };
+        }
+
+        window.onload = function () {
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('input-date').value = today;
+
+            const stored = localStorage.getItem('curseforge_tracker_actuals');
+            if (stored) {
+                try {
+                    userActuals = JSON.parse(stored);
+                } catch(e) {
+                    userActuals = JSON.parse(JSON.stringify(DEFAULT_ACTUALS));
+                }
+            } else {
+                userActuals = JSON.parse(JSON.stringify(DEFAULT_ACTUALS));
+            }
+
+            syncFormWithSelectedMonth();
+            updateView();
+            showToast("Tableau de bord synchronisé !");
+
+            document.getElementById('select-month').addEventListener('change', syncFormWithSelectedMonth);
+        }
+
+        function syncFormWithSelectedMonth() {
+            const selectedMonth = document.getElementById('select-month').value;
+            const records = userActuals[selectedMonth] || [];
+            
+            if (records.length > 0) {
+                const latest = records[records.length - 1];
+                document.getElementById('input-points').value = latest.points;
+                document.getElementById('input-euros').value = latest.euros;
+                document.getElementById('input-date').value = latest.date;
+            } else {
+                document.getElementById('input-points').value = '';
+                document.getElementById('input-euros').value = '';
+                document.getElementById('input-date').value = new Date().toISOString().split('T')[0];
+            }
+        }
+
+        function saveMonthlyData() {
+            const selectMonth = document.getElementById('select-month').value;
+            const pointsVal = parseInt(document.getElementById('input-points').value);
+            const eurosVal = parseFloat(document.getElementById('input-euros').value);
+            const dateVal = document.getElementById('input-date').value;
+
+            if (isNaN(pointsVal) || isNaN(eurosVal) || !dateVal) {
+                showToast("Saisis des valeurs numériques et une date valides !", "warning");
+                return;
+            }
+
+            if (!userActuals[selectMonth]) {
+                userActuals[selectMonth] = [];
+            }
+
+            const sameDateIdx = userActuals[selectMonth].findIndex(r => r.date === dateVal);
+            if (sameDateIdx > -1) {
+                userActuals[selectMonth][sameDateIdx] = {
+                    points: pointsVal,
+                    euros: eurosVal,
+                    date: dateVal
+                };
+                showToast(`Relevé du ${formatFrDate(dateVal)} mis à jour pour ${translateMonthToFr(selectMonth)}.`);
+            } else {
+                userActuals[selectMonth].push({
+                    points: pointsVal,
+                    euros: eurosVal,
+                    date: dateVal
+                });
+                showToast(`Nouveau dépôt enregistré pour ${translateMonthToFr(selectMonth)} !`);
+            }
+
+            userActuals[selectMonth].sort((a, b) => new Date(a.date) - new Date(b.date));
+            localStorage.setItem('curseforge_tracker_actuals', JSON.stringify(userActuals));
+            updateView();
+        }
+
+        function deleteRecord(monthName, index, event) {
+            if (event) event.stopPropagation(); 
+            if (!userActuals[monthName]) return;
+            
+            userActuals[monthName].splice(index, 1);
+            
+            if (userActuals[monthName].length === 0) {
+                delete userActuals[monthName];
+                delete unfoldedMonths[monthName];
+            }
+
+            localStorage.setItem('curseforge_tracker_actuals', JSON.stringify(userActuals));
+            
+            if (activeZoomMonth === monthName && (!userActuals[monthName] || userActuals[monthName].length === 0)) {
+                activeZoomMonth = null;
+            }
+
+            updateView();
+            showToast("Relevé supprimé avec succès.", "warning");
+        }
+
+        function resetToDiscussionPreset() {
+            userActuals = JSON.parse(JSON.stringify(DEFAULT_ACTUALS));
+            unfoldedMonths = {};
+            activeZoomMonth = null;
+            localStorage.setItem('curseforge_tracker_actuals', JSON.stringify(userActuals));
+            syncFormWithSelectedMonth();
+            updateView();
+            showToast("Données de la discussion restaurées.", "info");
+        }
+
+        function formatFrDate(dateStr) {
+            if (!dateStr) return "";
+            const parts = dateStr.split('-');
+            if (parts.length < 3) return dateStr;
+            return `${parts[2]}/${parts[1]}`;
+        }
+
+        function toggleAccordion(monthName, event) {
+            if (event) event.stopPropagation();
+            unfoldedMonths[monthName] = !unfoldedMonths[monthName];
+            updateView();
+        }
+
+        function updateView() {
+            const { processed, lastKnownActualIndex } = computeFullDatasets();
+
+            // 1. Update Core Stats Cards
+            const latestActualMonth = MONTH_NAMES_EN[lastKnownActualIndex];
+            const latestActual = getLatestRecordForMonth(latestActualMonth);
+            
+            if (latestActual) {
+                document.getElementById('header-latest-date').innerText = translateMonthToFr(latestActualMonth);
+                document.getElementById('stat-current-euro').innerText = `${latestActual.euros.toFixed(2)} €`;
+                document.getElementById('stat-current-points').innerText = `${latestActual.points.toLocaleString()} points CurseForge`;
+
+                const initialForecastValue = INITIAL_FORECAST[lastKnownActualIndex].euros;
+                const diffEuros = latestActual.euros - initialForecastValue;
+                const diffPercent = (diffEuros / initialForecastValue) * 100;
+
+                const diffEl = document.getElementById('stat-variation-value');
+                const percentEl = document.getElementById('stat-variation-percent');
+                const statusDot = document.getElementById('stat-status-dot');
+                const statusLabel = document.getElementById('stat-status-label');
+
+                diffEl.innerText = `${diffEuros >= 0 ? '+' : ''}${diffEuros.toFixed(2)} €`;
+                percentEl.innerText = `(${diffEuros >= 0 ? '+' : ''}${diffPercent.toFixed(2)}%)`;
+
+                if (Math.abs(diffPercent) <= 2) {
+                    diffEl.className = "text-3xl font-bold tracking-tight text-amber-500";
+                    percentEl.className = "text-sm font-semibold text-amber-500";
+                    statusDot.className = "h-2 w-2 rounded-full bg-amber-500";
+                    statusLabel.innerText = "Tendance : Stable / Neutre 🟡";
+                } else if (diffEuros > 0) {
+                    diffEl.className = "text-3xl font-bold tracking-tight text-emerald-400";
+                    percentEl.className = "text-sm font-semibold text-emerald-400";
+                    statusDot.className = "h-2 w-2 rounded-full bg-emerald-400 animate-pulse";
+                    statusLabel.innerText = "Tendance : Positive 🟢";
+                } else {
+                    diffEl.className = "text-3xl font-bold tracking-tight text-rose-500";
+                    percentEl.className = "text-sm font-semibold text-rose-500";
+                    statusDot.className = "h-2 w-2 rounded-full bg-rose-500";
+                    statusLabel.innerText = "Tendance : En Baisse 🔴";
+                }
+            }
+
+            // Atterrissage Estimé (May 2027)
+            const finalEstimate = processed[processed.length - 1];
+            document.getElementById('stat-projection-value').innerText = `~${finalEstimate.euros.toFixed(2)} €`;
+            document.getElementById('stat-projection-points').innerText = `~${finalEstimate.points.toLocaleString()} points attendus`;
+
+            // Goal Badge Card
+            const goalBadge = document.getElementById('stat-goal-badge');
+            if (finalEstimate.euros >= TARGET_EUROS) {
+                goalBadge.className = "text-xs px-2.5 py-0.5 rounded-full font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20";
+                goalBadge.innerHTML = `<i class="fa-solid fa-circle-check"></i> Objectif Atteint ⚔️`;
+            } else {
+                const missing = (TARGET_EUROS - finalEstimate.euros).toFixed(2);
+                goalBadge.className = "text-xs px-2.5 py-0.5 rounded-full font-semibold bg-rose-500/10 text-rose-400 border border-rose-500/20";
+                goalBadge.innerHTML = `<i class="fa-solid fa-clock"></i> Manque ${missing} €`;
+            }
+
+            // 2. Build the Accordion-supported History Table
+            const tbody = document.getElementById('table-body');
+            tbody.innerHTML = '';
+
+            processed.forEach((item, index) => {
+                const actualsList = userActuals[item.month] || [];
+                const latestRec = getLatestRecordForMonth(item.month);
+                const hasMultiple = actualsList.length > 1;
+                const isUnfolded = !!unfoldedMonths[item.month];
+
+                const tr = document.createElement('tr');
+                tr.className = `border-b border-slate-800/40 transition duration-200 hover:bg-slate-900/40 ${item.isActual ? 'bg-slate-900/10' : 'text-slate-500 bg-slate-950/20'}`;
+
+                let accordionToggleHtml = '';
+                if (hasMultiple) {
+                    const arrowIcon = isUnfolded ? 'fa-caret-down text-amber-500' : 'fa-caret-right text-slate-500';
+                    accordionToggleHtml = `
+                        <button onclick="toggleAccordion('${item.month}', event)" class="p-2 focus:outline-none hover:bg-slate-800 rounded-lg transition" title="Déplier/Replier les relevés">
+                            <i class="fa-solid ${arrowIcon} text-lg"></i>
+                        </button>
+                    `;
+                }
+
+                let pointsStr = '-';
+                let eurosStr = '-';
+                let diffBadgeHtml = '-';
+                let typeBadgeHtml = `<span class="px-2 py-0.5 rounded bg-slate-800 text-slate-500 text-xs font-semibold border border-slate-800 whitespace-nowrap">Projection</span>`;
+
+                if (item.isActual && latestRec) {
+                    const diffCurrent = latestRec.euros - item.forecastEuros;
+                    const diffPercent = (diffCurrent / item.forecastEuros) * 100;
+                    
+                    if (Math.abs(diffPercent) <= 2) {
+                        diffBadgeHtml = `<span class="text-amber-500 text-xs">Neutre</span>`;
+                    } else if (diffCurrent > 0) {
+                        diffBadgeHtml = `<span class="text-emerald-400 text-xs font-semibold">+${diffCurrent.toFixed(2)} €</span>`;
+                    } else {
+                        diffBadgeHtml = `<span class="text-rose-500 text-xs font-semibold">${diffCurrent.toFixed(2)} €</span>`;
+                    }
+
+                    if (isUnfolded) {
+                        pointsStr = '---';
+                        eurosStr = '---';
+                        diffBadgeHtml = '---';
+                        typeBadgeHtml = `<span class="px-2 py-0.5 rounded bg-amber-500/10 text-amber-500 text-xs font-semibold border border-amber-500/20 hover:cursor-pointer whitespace-nowrap">Synthèse (${actualsList.length} dép.)</span>`;
+                    } else {
+                        pointsStr = latestRec.points.toLocaleString();
+                        eurosStr = `${latestRec.euros.toFixed(2)} €`;
+                        typeBadgeHtml = `<span class="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 text-xs font-semibold border border-emerald-500/20 hover:cursor-pointer whitespace-nowrap" onclick="zoomIntoMonth('${item.month}')" title="Cliquer pour zoomer">Réel (${formatFrDate(latestRec.date)}) <i class="fa-solid fa-magnifying-glass-plus text-[10px] ml-1"></i></span>`;
+                    }
+                }
+
+                let rowActionHtml = '';
+                if (item.isActual && !isUnfolded) {
+                    rowActionHtml = `
+                        <button onclick="deleteRecord('${item.month}', ${actualsList.length - 1}, event)" class="text-slate-500 hover:text-rose-400 p-1.5 rounded-lg transition" title="Supprimer le dernier relevé">
+                            <i class="fa-regular fa-trash-can"></i>
+                        </button>
+                    `;
+                }
+
+                tr.innerHTML = `
+                    <td class="py-3 px-4 text-center">${accordionToggleHtml}</td>
+                    <td class="py-3 px-4 font-semibold text-slate-300 ${item.isActual && !isUnfolded ? 'hover:text-amber-400 cursor-pointer' : ''}" ${item.isActual && !isUnfolded ? `onclick="zoomIntoMonth('${item.month}')"` : ''}>
+                        ${translateMonthToFr(item.month)}
+                    </td>
+                    <td class="py-3 px-4">${typeBadgeHtml}</td>
+                    <td class="py-3 px-4">${pointsStr}</td>
+                    <td class="py-3 px-4 font-semibold text-slate-100">${eurosStr}</td>
+                    <td class="py-3 px-4 text-slate-500">${item.forecastEuros.toFixed(2)} €</td>
+                    <td class="py-3 px-4">${diffBadgeHtml}</td>
+                    <td class="py-3 px-4 text-center">${rowActionHtml}</td>
+                `;
+                tbody.appendChild(tr);
+
+                if (item.isActual && isUnfolded) {
+                    actualsList.forEach((subRecord, subIndex) => {
+                        const subTr = document.createElement('tr');
+                        // Add class for slide down and opacity transition
+                        subTr.className = "bg-slate-950/40 border-b border-slate-900/60 text-slate-400 transition duration-150 hover:bg-slate-950/80 animate-subrow";
+                        
+                        // Apply staggered animation delays
+                        subTr.style.animationDelay = `${subIndex * 40}ms`;
+                        subTr.style.opacity = "0"; // initial state before CSS animation pops in
+
+                        const dailyTargets = getDailyTargets(subRecord.date);
+                        const diffSub = subRecord.euros - dailyTargets.euros;
+                        
+                        let subDiffBadge = '';
+                        if (diffSub >= 0) {
+                            subDiffBadge = `<span class="text-emerald-500/80 text-xs font-semibold">+${diffSub.toFixed(2)} €</span>`;
+                        } else {
+                            subDiffBadge = `<span class="text-rose-500/80 text-xs font-semibold">${diffSub.toFixed(2)} €</span>`;
+                        }
+
+                        subTr.innerHTML = `
+                            <td class="py-2 px-4 text-center"><i class="fa-solid fa-arrow-turn-up rotate-90 text-slate-600 text-xs"></i></td>
+                            <td class="py-2 px-4 pl-6 text-xs text-slate-400 italic">Relevé le ${formatFrDate(subRecord.date)}</td>
+                            <td class="py-2 px-4"><span class="px-2 py-0.5 rounded bg-slate-800/60 text-slate-400 text-xs border border-slate-800 whitespace-nowrap">Dépôt #${subIndex + 1}</span></td>
+                            <td class="py-2 px-4 text-xs">${subRecord.points.toLocaleString()}</td>
+                            <td class="py-2 px-4 text-xs font-medium text-slate-300">${subRecord.euros.toFixed(2)} €</td>
+                            <td class="py-2 px-4 text-xs text-slate-500">${dailyTargets.euros.toFixed(2)} € <span class="text-[10px] text-slate-600">(Jour ${subRecord.date.split('-')[2]})</span></td>
+                            <td class="py-2 px-4">${subDiffBadge}</td>
+                            <td class="py-2 px-4 text-center">
+                                <button onclick="deleteRecord('${item.month}', ${subIndex}, event)" class="text-rose-500/70 hover:text-rose-400 p-1 rounded transition" title="Supprimer ce relevé précis">
+                                    <i class="fa-solid fa-xmark text-sm"></i>
+                                </button>
+                            </td>
+                        `;
+                        tbody.appendChild(subTr);
+                    });
+                }
+            });
+
+            renderChart(processed);
+        }
+
+        function zoomIntoMonth(monthName) {
+            const records = userActuals[monthName] || [];
+            if (records.length === 0) {
+                showToast("Aucune donnée réelle enregistrée pour ce mois.", "warning");
+                return;
+            }
+            activeZoomMonth = monthName;
+            updateView();
+            showToast(`Zoom mensuel : ${translateMonthToFr(monthName)} 🔍`, "info");
+        }
+
+        function resetZoom() {
+            activeZoomMonth = null;
+            updateView();
+            showToast("Retour à la trajectoire de l'année complète.", "info");
+        }
+
+        function getDaysInMonth(monthEnString) {
+            const [mName, yStr] = monthEnString.split(' ');
+            const year = parseInt(yStr);
+            const monthsMap = {
+                "May": 4, "June": 5, "July": 6, "August": 7, "September": 8, "October": 9,
+                "November": 10, "December": 11, "January": 0, "February": 1, "March": 2, "April": 3
+            };
+            const monthIdx = monthsMap[mName];
+            return new Date(year, monthIdx + 1, 0).getDate();
+        }
+
+        function renderChart(processed) {
+            const ctx = document.getElementById('trackerChart').getContext('2d');
+            const canvasElement = document.getElementById('trackerChart');
+            
+            // Elements control
+            const backBtn = document.getElementById('btn-back-zoom');
+            const chartTitle = document.getElementById('chart-title');
+            const chartSubtitle = document.getElementById('chart-subtitle');
+
+            // Force reflow to re-trigger cinematic entry CSS animation on chart swap
+            canvasElement.classList.remove('animate-chart-transition');
+            void canvasElement.offsetWidth;
+            canvasElement.classList.add('animate-chart-transition');
+
+            if (activeZoomMonth !== null) {
+                backBtn.classList.remove('hidden');
+                backBtn.classList.add('inline-flex');
+                chartTitle.innerText = `Zoom Mensuel : ${translateMonthToFr(activeZoomMonth)}`;
+                chartSubtitle.innerText = "Chaque point représente tes relevés précis replacés dans le calendrier.";
+
+                const daysCount = getDaysInMonth(activeZoomMonth);
+                const dailyLabels = [];
+                
+                const monthOnlyLabel = translateMonthToFr(activeZoomMonth).split(' ')[0];
+                for (let d = 1; d <= daysCount; d++) {
+                    dailyLabels.push(`${String(d).padStart(2, '0')} ${monthOnlyLabel}`);
+                }
+
+                const actuals = userActuals[activeZoomMonth] || [];
+                const dailyActualData = Array(daysCount).fill(null);
+                
+                actuals.forEach(rec => {
+                    const dayNum = parseInt(rec.date.split('-')[2]);
+                    if (dayNum >= 1 && dayNum <= daysCount) {
+                        dailyActualData[dayNum - 1] = rec.euros;
+                    }
+                });
+
+                // CARRYOVER FEATURE: Inject previous month's final value at Day 1 if empty!
+                if (dailyActualData[0] === null) {
+                    let prevValue = 25.00; 
+                    const currentMonthIdx = MONTH_NAMES_EN.indexOf(activeZoomMonth);
+                    if (currentMonthIdx > 0) {
+                        const prevMonthName = MONTH_NAMES_EN[currentMonthIdx - 1];
+                        const prevLatest = getLatestRecordForMonth(prevMonthName);
+                        if (prevLatest) {
+                            prevValue = prevLatest.euros;
+                        } else {
+                            const [pMName, pYStr] = prevMonthName.split(' ');
+                            const pMonthNum = MONTHS_NUM_MAP[pMName];
+                            const prevMonthKey = `${pYStr}-${String(pMonthNum).padStart(2, '0')}`;
+                            if (TARGET_ENDPOINTS[prevMonthKey]) {
+                                prevValue = TARGET_ENDPOINTS[prevMonthKey].euros;
+                            }
+                        }
+                    } else {
+                        prevValue = TARGET_ENDPOINTS["2026-04"].euros;
+                    }
+                    dailyActualData[0] = prevValue;
+                }
+
+                const dailyProjectionData = Array(daysCount).fill(null);
+                
+                let lastMonthWithDataName = null;
+                MONTH_NAMES_EN.forEach(m => {
+                    if (userActuals[m] && userActuals[m].length > 0) {
+                        lastMonthWithDataName = m;
+                    }
+                });
+
+                let lastActualDayIndex = -1;
+                actuals.forEach(rec => {
+                    const d = parseInt(rec.date.split('-')[2]);
+                    if (d - 1 > lastActualDayIndex) {
+                        lastActualDayIndex = d - 1;
+                    }
+                });
+
+                if (lastActualDayIndex > -1) {
+                    dailyProjectionData[lastActualDayIndex] = dailyActualData[lastActualDayIndex];
+                    
+                    if (activeZoomMonth === lastMonthWithDataName) {
+                        dailyProjectionData[daysCount - 1] = dailyActualData[lastActualDayIndex];
+                    }
+                }
+
+                const [mName, yStr] = activeZoomMonth.split(' ');
+                const currentMonthNum = MONTHS_NUM_MAP[mName];
+                const yearNum = parseInt(yStr);
+                const monthlyTargetData = [];
+
+                for (let d = 1; d <= daysCount; d++) {
+                    const dateString = `${yearNum}-${String(currentMonthNum).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+                    monthlyTargetData.push(getDailyTargets(dateString).euros);
+                }
+
+                if (trackerChart) trackerChart.destroy();
+
+                trackerChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: dailyLabels,
+                        datasets: [
+                            {
+                                label: 'Cible Quotidienne',
+                                data: monthlyTargetData,
+                                borderColor: '#d97706',
+                                borderWidth: 2,
+                                borderDash: [5, 5],
+                                pointRadius: 0,
+                                fill: false,
+                            },
+                            {
+                                label: 'Dépôts Enregistrés',
+                                data: dailyActualData,
+                                borderColor: '#10b981',
+                                borderWidth: 3.5,
+                                pointRadius: 6,
+                                pointHoverRadius: 9,
+                                pointBackgroundColor: '#10b981',
+                                pointBorderColor: '#0f172a',
+                                pointBorderWidth: 2,
+                                fill: false,
+                                tension: 0.1,
+                                spanGaps: true 
+                            },
+                            {
+                                label: 'Projection Fin de Mois',
+                                data: dailyProjectionData,
+                                borderColor: '#10b981',
+                                borderWidth: 2.5,
+                                borderDash: [4, 4],
+                                pointRadius: 4,
+                                pointBackgroundColor: '#1e293b',
+                                pointBorderColor: '#10b981',
+                                pointBorderWidth: 1.5,
+                                fill: false,
+                                tension: 0.1,
+                                spanGaps: true 
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: false }
+                        },
+                        scales: {
+                            x: {
+                                grid: { color: 'rgba(30, 41, 59, 0.4)' },
+                                ticks: { color: '#94a3b8', font: { family: 'Inter', size: 10 } }
+                            },
+                            y: {
+                                grid: { color: 'rgba(30, 41, 59, 0.4)' },
+                                ticks: {
+                                    color: '#94a3b8',
+                                    font: { family: 'Inter', size: 11 },
+                                    callback: v => v + ' €'
+                                }
+                            }
+                        }
+                    }
+                });
+
+            } else {
+                backBtn.classList.remove('inline-flex');
+                backBtn.classList.add('hidden');
+                chartTitle.innerText = "Trajectoire de Financement";
+                chartSubtitle.innerText = "Clique sur un point vert réel pour zoomer et voir le détail de tes relevés !";
+
+                const labels = processed.map(item => translateMonthToFr(item.month));
+                const targetData = Array(labels.length).fill(TARGET_EUROS);
+                const forecastData = processed.map(item => item.forecastEuros);
+                
+                const actualsDataOnly = processed.map(item => item.isActual ? item.euros : null);
+                
+                const projectionDataOnly = processed.map((item, index) => {
+                    const lastActualIdx = processed.filter(x => x.isActual).length - 1;
+                    return index >= lastActualIdx ? item.euros : null;
+                });
+
+                if (trackerChart) trackerChart.destroy();
+
+                trackerChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [
+                            {
+                                label: 'Objectif Minimum',
+                                data: targetData,
+                                borderColor: '#d97706',
+                                borderWidth: 2.5,
+                                borderDash: [6, 6],
+                                pointRadius: 0,
+                                fill: false,
+                            },
+                            {
+                                label: 'Prévision Initiale',
+                                data: forecastData,
+                                borderColor: 'rgba(59, 130, 246, 0.4)',
+                                borderWidth: 2,
+                                pointRadius: 3,
+                                pointBackgroundColor: 'rgba(59, 130, 246, 0.4)',
+                                fill: false,
+                            },
+                            {
+                                label: 'Valeur Réelle',
+                                data: actualsDataOnly,
+                                borderColor: '#10b981',
+                                borderWidth: 4,
+                                pointRadius: 6,
+                                pointHoverRadius: 8,
+                                pointBackgroundColor: '#10b981',
+                                pointBorderColor: '#0f172a',
+                                pointBorderWidth: 2,
+                                fill: false,
+                                tension: 0.2
+                            },
+                            {
+                                label: 'Projection Future',
+                                data: projectionDataOnly,
+                                borderColor: '#10b981',
+                                borderWidth: 3,
+                                borderDash: [5, 5],
+                                pointRadius: 4,
+                                pointBackgroundColor: '#1e293b',
+                                pointBorderColor: '#10b981',
+                                pointBorderWidth: 2,
+                                fill: false,
+                                tension: 0.2
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: false },
+                            tooltip: {
+                                backgroundColor: '#0f172a',
+                                titleColor: '#f8fafc',
+                                bodyColor: '#cbd5e1',
+                                borderColor: '#1e293b',
+                                borderWidth: 1,
+                                padding: 12,
+                                cornerRadius: 12,
+                                displayColors: true,
+                                callbacks: {
+                                    label: function(context) {
+                                        return ` ${context.dataset.label}: ${context.raw.toFixed(2)} €`;
+                                    }
+                                }
+                            }
+                        },
+                        onClick: (event, activeElements) => {
+                            if (activeElements && activeElements.length > 0) {
+                                const index = activeElements[0].index;
+                                const selectedMonthName = MONTH_NAMES_EN[index];
+                                const hasData = userActuals[selectedMonthName] && userActuals[selectedMonthName].length > 0;
+                                
+                                if (hasData) {
+                                    zoomIntoMonth(selectedMonthName);
+                                } else {
+                                    showToast("Pas de données réelles enregistrées pour ce mois à zoomer.", "info");
+                                }
+                            }
+                        },
+                        scales: {
+                            x: {
+                                grid: { color: 'rgba(30, 41, 59, 0.5)' },
+                                ticks: { color: '#94a3b8', font: { family: 'Inter', size: 11 } }
+                            },
+                            y: {
+                                grid: { color: 'rgba(30, 41, 59, 0.5)' },
+                                ticks: {
+                                    color: '#94a3b8',
+                                    font: { family: 'Inter', size: 11 },
+                                    callback: v => v + ' €'
+                                },
+                                min: 20
+                            }
+                        }
+                    }
+                });
+            }
+        }
+
+        function exportData() {
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(userActuals));
+            const downloadAnchor = document.createElement('a');
+            downloadAnchor.setAttribute("href", dataStr);
+            downloadAnchor.setAttribute("download", `curseforge_knife_multi_tracker_${new Date().toISOString().slice(0,10)}.json`);
+            document.body.appendChild(downloadAnchor);
+            downloadAnchor.click();
+            downloadAnchor.remove();
+            showToast("Données multi-relevés exportées en JSON !");
+        }
+
+        function exportChatReport() {
+            const { processed } = computeFullDatasets();
+            let report = `### 📊 RAPPORT DE SUIVI CURSEFORGE - PROJET RYOMA KUROSAN ⚔️\n`;
+            report += `*Généré automatiquement le : ${new Date().toLocaleDateString('fr-FR')}*\n\n`;
+            
+            report += `#### 💾 HISTORIQUE COMPLET DE TOUS MES RELEVÉS :\n`;
+            MONTH_NAMES_EN.forEach(m => {
+                const list = userActuals[m] || [];
+                if (list.length > 0) {
+                    report += `- **${translateMonthToFr(m)}** :\n`;
+                    list.forEach((rec, idx) => {
+                        const d = new Date(rec.date);
+                        const dateFormatted = !isNaN(d.getTime()) ? d.toLocaleDateString('fr-FR') : rec.date;
+                        report += `  └ Dépôt #${idx+1} (${dateFormatted}) : \`${rec.points.toLocaleString()} pts\` | \`${rec.euros.toFixed(2)} €\`\n`;
+                    });
+                }
+            });
+
+            const lastKnownActualIndex = processed.filter(x => x.isActual).length - 1;
+            const latestMonthName = MONTH_NAMES_EN[lastKnownActualIndex];
+            const latest = processed[lastKnownActualIndex];
+            const diffEuros = latest.euros - latest.forecastEuros;
+            const diffPercent = (diffEuros / latest.forecastEuros) * 100;
+            const trend = Math.abs(diffPercent) <= 2 ? 'Stable / Neutre 🟡' : (diffEuros > 0 ? 'Positive 🟢' : 'En Baisse 🔴');
+
+            report += `\n#### 🎯 STATUT ACTUEL DU PROJET :\n`;
+            report += `- **Dernier mois synchronisé** : ${translateMonthToFr(latestMonthName)}\n`;
+            report += `- **Cagnotte accumulée** : \`${latest.euros.toFixed(2)} €\` (${latest.points.toLocaleString()} points)\n`;
+            report += `- **Écart vs Trajectoire Initiale** : \`${diffEuros >= 0 ? '+' : ''}${diffEuros.toFixed(2)} €\` (\`${diffEuros >= 0 ? '+' : ''}${diffPercent.toFixed(2)}%\`)\n`;
+            report += `- **Tendance Générale** : ${trend}\n`;
+
+            const finalEstimate = processed[processed.length - 1];
+            const isFunded = finalEstimate.euros >= TARGET_EUROS;
+            
+            report += `\n#### 🔮 PROJECTIONS MAI 2027 :\n`;
+            report += `- **Solde estimé à l'achat** : \`~${finalEstimate.euros.toFixed(2)} €\`\n`;
+            report += `- **Points totaux attendus** : \`~${finalEstimate.points.toLocaleString()} pts\`\n`;
+            report += `- **Statut du Duo de Couteaux (215 €)** : ${isFunded ? 'FINANCÉ À 100% (Objectif validé !) ⚔️' : `Manque ${(TARGET_EUROS - finalEstimate.euros).toFixed(2)} €`}\n`;
+            report += `\n*Copie et colle ce rapport directement dans notre chat pour qu'on mette à jour nos graphiques ensemble !*`;
+
+            const dataStr = "data:text/plain;charset=utf-8," + encodeURIComponent(report);
+            const downloadAnchor = document.createElement('a');
+            downloadAnchor.setAttribute("href", dataStr);
+            downloadAnchor.setAttribute("download", `rapport_curseforge_ryoma_${new Date().toISOString().slice(0,10)}.txt`);
+            document.body.appendChild(downloadAnchor);
+            downloadAnchor.click();
+            downloadAnchor.remove();
+            showToast("Rapport textuel .txt téléchargé ! Prêt à être collé.");
+        }
+
+        function triggerImport() {
+            document.getElementById('import-file').click();
+        }
+
+        function importData(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const parsed = JSON.parse(e.target.result);
+                    if (typeof parsed === 'object') {
+                        userActuals = parsed;
+                        localStorage.setItem('curseforge_tracker_actuals', JSON.stringify(userActuals));
+                        unfoldedMonths = {};
+                        activeZoomMonth = null;
+                        syncFormWithSelectedMonth();
+                        updateView();
+                        showToast("Importation réussie !");
+                    } else {
+                        showToast("Fichier JSON non conforme.", "warning");
+                    }
+                } catch (err) {
+                    showToast("Erreur lors de la lecture du fichier.", "warning");
+                }
+            };
+            reader.readAsText(file);
+        }
+        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwcX0Pue0yufY2PxomMHWeTCrcMieVL6vSMwq66bcjK7aCWf7rfUsuLlhpSgZuj4CjELA/exec";
+
+        async function sendDataToDrive(action, value) {
+          const response = await fetch(GOOGLE_SCRIPT_URL, {
+            method: "POST",
+            mode: "no-cors", // Nécessaire pour éviter les erreurs CORS
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ action: action, value: value })
+          });
+          console.log("Donnée envoyée !");
+        }
+    </script>
+</body>
+</html>
