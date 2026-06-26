@@ -1367,6 +1367,17 @@
             };
             reader.readAsText(file);
         }
+        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwcX0Pue0yufY2PxomMHWeTCrcMieVL6vSMwq66bcjK7aCWf7rfUsuLlhpSgZuj4CjELA/exec";
+
+        async function sendDataToDrive(action, value) {
+          const response = await fetch(GOOGLE_SCRIPT_URL, {
+            method: "POST",
+            mode: "no-cors", // Nécessaire pour éviter les erreurs CORS
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ action: action, value: value })
+          });
+          console.log("Donnée envoyée !");
+        } 
     </script>
 </body>
 </html>
