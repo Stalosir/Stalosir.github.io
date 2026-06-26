@@ -1347,10 +1347,17 @@
             if (!file) return;
 
             const reader = new FileReader();
+            
+            // Ajout du gestionnaire d'erreur FileReader
+            reader.onerror = function() {
+                showToast("Erreur système lors de la lecture du fichier.", "warning");
+            };
+
             reader.onload = function(e) {
                 try {
                     const parsed = JSON.parse(e.target.result);
-                    if (typeof parsed === 'object') {
+                    // Vérification simple si c'est un objet
+                    if (parsed && typeof parsed === 'object') {
                         userActuals = parsed;
                         localStorage.setItem('curseforge_tracker_actuals', JSON.stringify(userActuals));
                         unfoldedMonths = {};
@@ -1359,10 +1366,11 @@
                         updateView();
                         showToast("Importation réussie !");
                     } else {
-                        showToast("Fichier JSON non conforme.", "warning");
+                        showToast("Format JSON invalide.", "warning");
                     }
                 } catch (err) {
-                    showToast("Erreur lors de la lecture du fichier.", "warning");
+                    console.error("Erreur d'import :", err);
+                    showToast("Erreur JSON : " + err.message, "warning");
                 }
             };
             reader.readAsText(file);
