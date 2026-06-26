@@ -215,15 +215,7 @@
                     </div>
                     <!-- Legend Badges -->
                     <div class="flex flex-wrap items-center gap-3 text-xs" id="chart-legend-container">
-                        <span class="flex items-center gap-1.5 text-slate-400">
-                            <span class="h-2 w-3 bg-amber-500 rounded-full inline-block"></span> Objectif (215€)
-                        </span>
-                        <span class="flex items-center gap-1.5 text-slate-400">
-                            <span class="h-2 w-3 bg-blue-500/50 rounded-full inline-block"></span> Prévu initial
-                        </span>
-                        <span class="flex items-center gap-1.5 text-slate-400">
-                            <span class="h-2 w-3 bg-emerald-500 rounded-full inline-block"></span> Réel & Projection
-                        </span>
+                        <!-- Filled dynamically by JavaScript based on active mode -->
                     </div>
                 </div>
                 
@@ -240,12 +232,12 @@
                         <p class="text-xs text-slate-400">Saisis tes points et ta cagnotte. Les dates différentes s'ajouteront comme de nouveaux dépôts !</p>
                     </div>
 
-                    <!-- Custom Form -->
+                    <!-- Custom Form with forced baseline matching alignment -->
                     <div class="space-y-4">
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <div>
-                                <label for="select-month" class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5">Choisir le mois</label>
-                                <select id="select-month" class="w-full bg-slate-950 border border-slate-800 focus:border-amber-500 focus:ring-1 focus:ring-amber-500 rounded-xl px-3 py-2 text-slate-200 font-medium transition duration-200 text-sm">
+                            <div class="flex flex-col justify-end h-full">
+                                <label for="select-month" class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5 whitespace-nowrap">Mois</label>
+                                <select id="select-month" class="w-full h-11 bg-slate-950 border border-slate-800 focus:border-amber-500 focus:ring-1 focus:ring-amber-500 rounded-xl px-3 text-slate-200 font-medium transition duration-200 text-sm">
                                     <option value="May 2026">Mai 2026</option>
                                     <option value="June 2026" selected>Juin 2026</option>
                                     <option value="July 2026">Juillet 2026</option>
@@ -261,23 +253,23 @@
                                     <option value="May 2027">Mai 2027</option>
                                 </select>
                             </div>
-                            <div>
-                                <label for="input-date" class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5">Date exacte du relevé</label>
-                                <input type="date" id="input-date" class="w-full bg-slate-950 border border-slate-800 focus:border-amber-500 focus:ring-1 focus:ring-amber-500 rounded-xl px-3 py-2 text-slate-200 font-medium transition duration-200 text-sm">
+                            <div class="flex flex-col justify-end h-full">
+                                <label for="input-date" class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5 whitespace-nowrap">Date du relevé</label>
+                                <input type="date" id="input-date" class="w-full h-11 bg-slate-950 border border-slate-800 focus:border-amber-500 focus:ring-1 focus:ring-amber-500 rounded-xl px-3 text-slate-200 font-medium transition duration-200 text-sm">
                             </div>
                         </div>
 
                         <div class="grid grid-cols-2 gap-4">
-                            <div>
-                                <label for="input-points" class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5">Points</label>
+                            <div class="flex flex-col justify-end h-full">
+                                <label for="input-points" class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5 whitespace-nowrap">Points</label>
                                 <div class="relative">
-                                    <input type="number" id="input-points" class="w-full bg-slate-950 border border-slate-800 focus:border-amber-500 focus:ring-1 focus:ring-amber-500 rounded-xl px-3 py-2 text-slate-200 font-medium transition duration-200 placeholder:text-slate-600 text-sm" placeholder="1340">
+                                    <input type="number" id="input-points" class="w-full h-11 bg-slate-950 border border-slate-800 focus:border-amber-500 focus:ring-1 focus:ring-amber-500 rounded-xl px-3 py-2 text-slate-200 font-medium transition duration-200 placeholder:text-slate-600 text-sm" placeholder="1340">
                                 </div>
                             </div>
-                            <div>
-                                <label for="input-euros" class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5">Cagnotte (€)</label>
+                            <div class="flex flex-col justify-end h-full">
+                                <label for="input-euros" class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5 whitespace-nowrap">Cagnotte (€)</label>
                                 <div class="relative">
-                                    <input type="number" step="0.01" id="input-euros" class="w-full bg-slate-950 border border-slate-800 focus:border-amber-500 focus:ring-1 focus:ring-amber-500 rounded-xl px-3 py-2 text-slate-200 font-medium transition duration-200 placeholder:text-slate-600 text-sm" placeholder="58.75">
+                                    <input type="number" step="0.01" id="input-euros" class="w-full h-11 bg-slate-950 border border-slate-800 focus:border-amber-500 focus:ring-1 focus:ring-amber-500 rounded-xl px-3 py-2 text-slate-200 font-medium transition duration-200 placeholder:text-slate-600 text-sm" placeholder="58.75">
                                 </div>
                             </div>
                         </div>
@@ -290,6 +282,11 @@
 
                 <!-- Action section (Presets & Export) -->
                 <div class="border-t border-slate-800 pt-4 space-y-2">
+                    <!-- Nouveau bouton ajouté -->
+                    <a href="https://stalosir.github.io/DashBoard_Curseforge.html" target="_blank" rel="noopener noreferrer" class="w-full bg-indigo-950/40 hover:bg-indigo-900 border border-indigo-800 hover:border-indigo-700 text-indigo-300 hover:text-white py-2 px-4 rounded-xl transition duration-200 text-xs font-medium flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-cloud-arrow-up"></i> Page d'Upload
+                    </a>
+
                     <button onclick="resetToDiscussionPreset()" class="w-full bg-slate-950/60 hover:bg-slate-950 border border-slate-800 hover:border-slate-700 text-slate-400 hover:text-slate-200 py-2 px-4 rounded-xl transition duration-200 text-xs font-medium flex items-center justify-center gap-2">
                         <i class="fa-solid fa-arrow-rotate-left"></i> Rétablir les données de la discussion
                     </button>
@@ -451,6 +448,82 @@
             return {
                 points: Math.round(interpolatedPoints),
                 euros: parseFloat(interpolatedEuros.toFixed(2))
+            };
+        }
+
+        // Builds a timeline of all actual deposits & projections to allow flawless day-to-day interpolation
+        function getAnchorTimeline() {
+            let anchors = [];
+            const { processed } = computeFullDatasets();
+            
+            processed.forEach((item) => {
+                const monthName = item.month;
+                const records = userActuals[monthName] || [];
+                
+                if (records.length > 0) {
+                    records.forEach(rec => {
+                        anchors.push({
+                            date: rec.date,
+                            euros: rec.euros,
+                            points: rec.points,
+                            isActual: true
+                        });
+                    });
+                } else {
+                    const [mName, yStr] = monthName.split(' ');
+                    const yearNum = parseInt(yStr);
+                    const currentMonthNum = MONTHS_NUM_MAP[mName];
+                    const daysInMonth = new Date(yearNum, currentMonthNum, 0).getDate();
+                    const lastDayDateStr = `${yearNum}-${String(currentMonthNum).padStart(2, '0')}-${String(daysInMonth).padStart(2, '0')}`;
+                    
+                    anchors.push({
+                        date: lastDayDateStr,
+                        euros: item.euros,
+                        points: item.points,
+                        isActual: false
+                    });
+                }
+            });
+            
+            anchors.sort((a, b) => new Date(a.date) - new Date(b.date));
+            return anchors;
+        }
+
+        // Calculates an exact value at any calendar date using linear interpolation between bounding anchors
+        function getValueAtExactDate(dateStr) {
+            const anchors = getAnchorTimeline();
+            const exact = anchors.find(a => a.date === dateStr);
+            if (exact) return { euros: exact.euros, points: exact.points, isActual: exact.isActual };
+            
+            const targetTime = new Date(dateStr).getTime();
+            let prevAnchor = null;
+            let nextAnchor = null;
+            
+            for (let i = 0; i < anchors.length; i++) {
+                const anchorTime = new Date(anchors[i].date).getTime();
+                if (anchorTime <= targetTime) {
+                    prevAnchor = anchors[i];
+                } else {
+                    nextAnchor = anchors[i];
+                    break;
+                }
+            }
+            
+            if (!prevAnchor && !nextAnchor) return { euros: 0, points: 0, isActual: false };
+            if (!prevAnchor) return { euros: nextAnchor.euros, points: nextAnchor.points, isActual: false };
+            if (!nextAnchor) return { euros: prevAnchor.euros, points: prevAnchor.points, isActual: false };
+            
+            const tPrev = new Date(prevAnchor.date).getTime();
+            const tNext = new Date(nextAnchor.date).getTime();
+            const ratio = (targetTime - tPrev) / (tNext - tPrev);
+            
+            const interpolatedEuros = prevAnchor.euros + (nextAnchor.euros - prevAnchor.euros) * ratio;
+            const interpolatedPoints = prevAnchor.points + (nextAnchor.points - prevAnchor.points) * ratio;
+            
+            return {
+                euros: parseFloat(interpolatedEuros.toFixed(2)),
+                points: Math.round(interpolatedPoints),
+                isActual: false
             };
         }
 
@@ -635,34 +708,9 @@
 
             localStorage.setItem('curseforge_tracker_actuals', JSON.stringify(userActuals));
             
-            if (activeZoomMonth === monthName && (!userActuals[monthName] || userActuals[monthName].length === 0)) {
-                activeZoomMonth = null;
-            }
+            // Appelle la fonction pour envoyer sur le Drive
+            sendDataToDrive("Save Relevé", `Mois: ${selectMonth}, Points: ${pointsVal}, Euros: ${eurosVal}`);
 
-            updateView();
-            showToast("Relevé supprimé avec succès.", "warning");
-        }
-
-        function resetToDiscussionPreset() {
-            userActuals = JSON.parse(JSON.stringify(DEFAULT_ACTUALS));
-            unfoldedMonths = {};
-            activeZoomMonth = null;
-            localStorage.setItem('curseforge_tracker_actuals', JSON.stringify(userActuals));
-            syncFormWithSelectedMonth();
-            updateView();
-            showToast("Données de la discussion restaurées.", "info");
-        }
-
-        function formatFrDate(dateStr) {
-            if (!dateStr) return "";
-            const parts = dateStr.split('-');
-            if (parts.length < 3) return dateStr;
-            return `${parts[2]}/${parts[1]}`;
-        }
-
-        function toggleAccordion(monthName, event) {
-            if (event) event.stopPropagation();
-            unfoldedMonths[monthName] = !unfoldedMonths[monthName];
             updateView();
         }
 
@@ -708,7 +756,7 @@
                 }
             }
 
-            // Atterrissage Estimé (May 2027)
+            // Estimate to May 2027
             const finalEstimate = processed[processed.length - 1];
             document.getElementById('stat-projection-value').innerText = `~${finalEstimate.euros.toFixed(2)} €`;
             document.getElementById('stat-projection-points').innerText = `~${finalEstimate.points.toLocaleString()} points attendus`;
@@ -802,12 +850,9 @@
                 if (item.isActual && isUnfolded) {
                     actualsList.forEach((subRecord, subIndex) => {
                         const subTr = document.createElement('tr');
-                        // Add class for slide down and opacity transition
                         subTr.className = "bg-slate-950/40 border-b border-slate-900/60 text-slate-400 transition duration-150 hover:bg-slate-950/80 animate-subrow";
-                        
-                        // Apply staggered animation delays
                         subTr.style.animationDelay = `${subIndex * 40}ms`;
-                        subTr.style.opacity = "0"; // initial state before CSS animation pops in
+                        subTr.style.opacity = "0";
 
                         const dailyTargets = getDailyTargets(subRecord.date);
                         const diffSub = subRecord.euros - dailyTargets.euros;
@@ -873,21 +918,47 @@
             const ctx = document.getElementById('trackerChart').getContext('2d');
             const canvasElement = document.getElementById('trackerChart');
             
-            // Elements control
             const backBtn = document.getElementById('btn-back-zoom');
             const chartTitle = document.getElementById('chart-title');
             const chartSubtitle = document.getElementById('chart-subtitle');
+            const legendContainer = document.getElementById('chart-legend-container');
 
-            // Force reflow to re-trigger cinematic entry CSS animation on chart swap
             canvasElement.classList.remove('animate-chart-transition');
             void canvasElement.offsetWidth;
             canvasElement.classList.add('animate-chart-transition');
+
+            let allActuals = [];
+            MONTH_NAMES_EN.forEach(m => {
+                const list = userActuals[m] || [];
+                list.forEach(r => allActuals.push(r));
+            });
+            allActuals.sort((a,b) => new Date(a.date) - new Date(b.date));
+            const firstActualDateStr = allActuals.length > 0 ? allActuals[0].date : null;
+            const lastActualDateStr = allActuals.length > 0 ? allActuals[allActuals.length - 1].date : null;
 
             if (activeZoomMonth !== null) {
                 backBtn.classList.remove('hidden');
                 backBtn.classList.add('inline-flex');
                 chartTitle.innerText = `Zoom Mensuel : ${translateMonthToFr(activeZoomMonth)}`;
-                chartSubtitle.innerText = "Chaque point représente tes relevés précis replacés dans le calendrier.";
+                chartSubtitle.innerText = "Glisse ta souris sur le graphique pour survoler facilement tous tes relevés.";
+
+                legendContainer.innerHTML = `
+                    <span class="flex items-center gap-1.5 text-slate-400">
+                        <span class="h-2 w-3 bg-[#d97706] rounded-full inline-block"></span> Cible Quotidienne
+                    </span>
+                    <span class="flex items-center gap-1.5 text-slate-400">
+                        <span class="h-2 w-3 bg-[#10b981] rounded-full inline-block"></span> Dépôt Réel
+                    </span>
+                    <span class="flex items-center gap-1.5 text-slate-400">
+                        <span class="h-2 w-3 bg-[#f59e0b] rounded-full inline-block"></span> Premier Dépôt 🌟
+                    </span>
+                    <span class="flex items-center gap-1.5 text-slate-400">
+                        <span class="h-2 w-3 bg-[#38bdf8] rounded-full inline-block"></span> Estimation (Interp.)
+                    </span>
+                    <span class="flex items-center gap-1.5 text-slate-400">
+                        <span class="h-2 w-3 border border-dashed border-[#38bdf8] rounded-full inline-block"></span> Estimation (Futur)
+                    </span>
+                `;
 
                 const daysCount = getDaysInMonth(activeZoomMonth);
                 const dailyLabels = [];
@@ -897,9 +968,15 @@
                     dailyLabels.push(`${String(d).padStart(2, '0')} ${monthOnlyLabel}`);
                 }
 
-                const actuals = userActuals[activeZoomMonth] || [];
+                const [mName, yStr] = activeZoomMonth.split(' ');
+                const currentMonthNum = MONTHS_NUM_MAP[mName];
+                const yearNum = parseInt(yStr);
+
                 const dailyActualData = Array(daysCount).fill(null);
+                const dailyPastInterpolation = Array(daysCount).fill(null);
+                const dailyFutureProjection = Array(daysCount).fill(null);
                 
+                const actuals = userActuals[activeZoomMonth] || [];
                 actuals.forEach(rec => {
                     const dayNum = parseInt(rec.date.split('-')[2]);
                     if (dayNum >= 1 && dayNum <= daysCount) {
@@ -907,62 +984,51 @@
                     }
                 });
 
-                // CARRYOVER FEATURE: Inject previous month's final value at Day 1 if empty!
-                if (dailyActualData[0] === null) {
-                    let prevValue = 25.00; 
-                    const currentMonthIdx = MONTH_NAMES_EN.indexOf(activeZoomMonth);
-                    if (currentMonthIdx > 0) {
-                        const prevMonthName = MONTH_NAMES_EN[currentMonthIdx - 1];
-                        const prevLatest = getLatestRecordForMonth(prevMonthName);
-                        if (prevLatest) {
-                            prevValue = prevLatest.euros;
-                        } else {
-                            const [pMName, pYStr] = prevMonthName.split(' ');
-                            const pMonthNum = MONTHS_NUM_MAP[pMName];
-                            const prevMonthKey = `${pYStr}-${String(pMonthNum).padStart(2, '0')}`;
-                            if (TARGET_ENDPOINTS[prevMonthKey]) {
-                                prevValue = TARGET_ENDPOINTS[prevMonthKey].euros;
-                            }
-                        }
-                    } else {
-                        prevValue = TARGET_ENDPOINTS["2026-04"].euros;
-                    }
-                    dailyActualData[0] = prevValue;
-                }
-
-                const dailyProjectionData = Array(daysCount).fill(null);
-                
-                let lastMonthWithDataName = null;
-                MONTH_NAMES_EN.forEach(m => {
-                    if (userActuals[m] && userActuals[m].length > 0) {
-                        lastMonthWithDataName = m;
-                    }
-                });
-
-                let lastActualDayIndex = -1;
-                actuals.forEach(rec => {
-                    const d = parseInt(rec.date.split('-')[2]);
-                    if (d - 1 > lastActualDayIndex) {
-                        lastActualDayIndex = d - 1;
-                    }
-                });
-
-                if (lastActualDayIndex > -1) {
-                    dailyProjectionData[lastActualDayIndex] = dailyActualData[lastActualDayIndex];
+                for (let d = 1; d <= daysCount; d++) {
+                    const dateStr = `${yearNum}-${String(currentMonthNum).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
                     
-                    if (activeZoomMonth === lastMonthWithDataName) {
-                        dailyProjectionData[daysCount - 1] = dailyActualData[lastActualDayIndex];
+                    if (firstActualDateStr && dateStr < firstActualDateStr) {
+                        continue; 
+                    }
+                    
+                    if (dateStr === firstActualDateStr) {
+                        dailyPastInterpolation[d - 1] = getValueAtExactDate(dateStr).euros;
+                    } 
+                    else if (firstActualDateStr && dateStr > firstActualDateStr && lastActualDateStr && dateStr <= lastActualDateStr) {
+                        dailyPastInterpolation[d - 1] = getValueAtExactDate(dateStr).euros;
+                        if (dateStr === lastActualDateStr) {
+                            dailyFutureProjection[d - 1] = getValueAtExactDate(dateStr).euros;
+                        }
+                    } 
+                    else if (lastActualDateStr && dateStr > lastActualDateStr) {
+                        dailyFutureProjection[d - 1] = getValueAtExactDate(dateStr).euros;
                     }
                 }
 
-                const [mName, yStr] = activeZoomMonth.split(' ');
-                const currentMonthNum = MONTHS_NUM_MAP[mName];
-                const yearNum = parseInt(yStr);
                 const monthlyTargetData = [];
-
                 for (let d = 1; d <= daysCount; d++) {
                     const dateString = `${yearNum}-${String(currentMonthNum).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
                     monthlyTargetData.push(getDailyTargets(dateString).euros);
+                }
+
+                const pointBgColors = [];
+                const pointBorderColors = [];
+                const pointRadii = [];
+                const pointHoverRadii = [];
+
+                for (let d = 1; d <= daysCount; d++) {
+                    const dateStr = `${yearNum}-${String(currentMonthNum).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+                    if (firstActualDateStr && dateStr === firstActualDateStr) {
+                        pointBgColors.push('#f59e0b'); 
+                        pointBorderColors.push('#0f172a');
+                        pointRadii.push(9);
+                        pointHoverRadii.push(12);
+                    } else {
+                        pointBgColors.push('#10b981'); 
+                        pointBorderColors.push('#0f172a');
+                        pointRadii.push(6);
+                        pointHoverRadii.push(9);
+                    }
                 }
 
                 if (trackerChart) trackerChart.destroy();
@@ -982,29 +1048,39 @@
                                 fill: false,
                             },
                             {
-                                label: 'Dépôts Enregistrés',
+                                label: 'Dépôt Réel',
                                 data: dailyActualData,
                                 borderColor: '#10b981',
                                 borderWidth: 3.5,
-                                pointRadius: 6,
-                                pointHoverRadius: 9,
-                                pointBackgroundColor: '#10b981',
-                                pointBorderColor: '#0f172a',
+                                pointRadius: pointRadii,
+                                pointHoverRadius: pointHoverRadii,
+                                pointBackgroundColor: pointBgColors,
+                                pointBorderColor: pointBorderColors,
                                 pointBorderWidth: 2,
+                                pointHitRadius: 15,
                                 fill: false,
                                 tension: 0.1,
                                 spanGaps: true 
                             },
                             {
-                                label: 'Projection Fin de Mois',
-                                data: dailyProjectionData,
-                                borderColor: '#10b981',
+                                label: 'Estimation (Interp.)',
+                                data: dailyPastInterpolation,
+                                borderColor: '#38bdf8', 
                                 borderWidth: 2.5,
-                                borderDash: [4, 4],
-                                pointRadius: 4,
-                                pointBackgroundColor: '#1e293b',
-                                pointBorderColor: '#10b981',
-                                pointBorderWidth: 1.5,
+                                pointRadius: 0,
+                                pointHitRadius: 15,
+                                fill: false,
+                                tension: 0.1,
+                                spanGaps: true 
+                            },
+                            {
+                                label: 'Estimation (Futur)',
+                                data: dailyFutureProjection,
+                                borderColor: '#38bdf8', 
+                                borderWidth: 2.5,
+                                borderDash: [6, 4], 
+                                pointRadius: 0,
+                                pointHitRadius: 15,
                                 fill: false,
                                 tension: 0.1,
                                 spanGaps: true 
@@ -1014,8 +1090,33 @@
                     options: {
                         responsive: true,
                         maintainAspectRatio: false,
+                        interaction: {
+                            mode: 'index',
+                            intersect: false,
+                        },
                         plugins: {
-                            legend: { display: false }
+                            legend: { display: false },
+                            tooltip: {
+                                backgroundColor: '#0f172a',
+                                titleColor: '#f8fafc',
+                                bodyColor: '#cbd5e1',
+                                borderColor: '#1e293b',
+                                borderWidth: 1,
+                                padding: 12,
+                                cornerRadius: 12,
+                                displayColors: true,
+                                callbacks: {
+                                    label: function(context) {
+                                        const index = context.dataIndex;
+                                        const d = index + 1;
+                                        const dateString = `${yearNum}-${String(currentMonthNum).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+                                        if (firstActualDateStr && dateString === firstActualDateStr && context.dataset.label === 'Dépôt Réel') {
+                                            return ` Premier dépôt 🌟 : ${context.raw.toFixed(2)} €`;
+                                        }
+                                        return ` ${context.dataset.label}: ${context.raw.toFixed(2)} €`;
+                                    }
+                                }
+                            }
                         },
                         scales: {
                             x: {
@@ -1039,6 +1140,18 @@
                 backBtn.classList.add('hidden');
                 chartTitle.innerText = "Trajectoire de Financement";
                 chartSubtitle.innerText = "Clique sur un point vert réel pour zoomer et voir le détail de tes relevés !";
+
+                legendContainer.innerHTML = `
+                    <span class="flex items-center gap-1.5 text-slate-400">
+                        <span class="h-2 w-3 bg-amber-500 rounded-full inline-block"></span> Objectif (215€)
+                    </span>
+                    <span class="flex items-center gap-1.5 text-slate-400">
+                        <span class="h-2 w-3 bg-blue-500/50 rounded-full inline-block"></span> Prévu initial
+                    </span>
+                    <span class="flex items-center gap-1.5 text-slate-400">
+                        <span class="h-2 w-3 bg-emerald-500 rounded-full inline-block"></span> Réel & Projection
+                    </span>
+                `;
 
                 const labels = processed.map(item => translateMonthToFr(item.month));
                 const targetData = Array(labels.length).fill(TARGET_EUROS);
@@ -1086,6 +1199,7 @@
                                 pointBackgroundColor: '#10b981',
                                 pointBorderColor: '#0f172a',
                                 pointBorderWidth: 2,
+                                pointHitRadius: 15,
                                 fill: false,
                                 tension: 0.2
                             },
@@ -1099,6 +1213,7 @@
                                 pointBackgroundColor: '#1e293b',
                                 pointBorderColor: '#10b981',
                                 pointBorderWidth: 2,
+                                pointHitRadius: 15,
                                 fill: false,
                                 tension: 0.2
                             }
@@ -1107,6 +1222,10 @@
                     options: {
                         responsive: true,
                         maintainAspectRatio: false,
+                        interaction: {
+                            mode: 'index',
+                            intersect: false,
+                        },
                         plugins: {
                             legend: { display: false },
                             tooltip: {
@@ -1247,17 +1366,6 @@
                 }
             };
             reader.readAsText(file);
-        }
-        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwcX0Pue0yufY2PxomMHWeTCrcMieVL6vSMwq66bcjK7aCWf7rfUsuLlhpSgZuj4CjELA/exec";
-
-        async function sendDataToDrive(action, value) {
-          const response = await fetch(GOOGLE_SCRIPT_URL, {
-            method: "POST",
-            mode: "no-cors", // Nécessaire pour éviter les erreurs CORS
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ action: action, value: value })
-          });
-          console.log("Donnée envoyée !");
         }
     </script>
 </body>
